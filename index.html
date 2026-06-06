@@ -1,0 +1,2909 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Corporate Sense | Workplace Transformation Consultancy</title>
+<meta name="description" content="Corporate Sense helps growing organisations diagnose and rebuild the systems driving burnout, turnover, and disengagement." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #051C2C;
+    --navy-2: #082A40;
+    --navy-3: #0A3554;
+    --accent: #E5B342;
+    --accent-deep: #C9941F;
+    --paper: #FFFFFF;
+    --bg: #F4F1EC;
+    --bg-2: #EDE8DE;
+    --line: #D8D2C7;
+    --ink: #051C2C;
+    --ink-2: #2A3A48;
+    --ink-mute: #6B7785;
+
+    --skin-1: #5B3A2A;
+    --skin-2: #6F4A36;
+    --skin-3: #4A2F22;
+    --skin-4: #7A5239;
+
+    --display: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --max: 1440px;
+    --gutter: clamp(20px, 4vw, 56px);
+    --pad: clamp(80px, 11vh, 140px);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--paper);
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--navy); color: #fff; }
+  a { color: inherit; text-decoration: none; }
+  img, svg { max-width: 100%; display: block; }
+  button { font-family: inherit; }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--display);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.02;
+    color: var(--ink);
+  }
+  h1 { font-size: clamp(48px, 7.5vw, 104px); letter-spacing: -0.035em; }
+  h2 { font-size: clamp(36px, 4.8vw, 64px); letter-spacing: -0.03em; line-height: 1.05; }
+  h3 { font-size: clamp(24px, 2.4vw, 32px); line-height: 1.15; }
+  h4 { font-size: 20px; line-height: 1.25; }
+
+  .label {
+    font-family: var(--body);
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent-deep);
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .label.on-dark { color: var(--accent); }
+  .num {
+    font-family: var(--display);
+    font-size: 12px; font-weight: 500;
+    color: var(--ink-mute); letter-spacing: 0.04em;
+  }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+  section { padding: var(--pad) 0; }
+
+  /* NAV */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 60;
+    padding: 18px 0;
+    background: transparent;
+    transition: all 0.4s var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled, .nav.on-light {
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom-color: var(--line);
+    padding: 14px 0;
+  }
+  .nav.on-light .nav-links a, .nav.on-light .logo { color: var(--ink); }
+  .nav.on-light .menu-toggle span { background: var(--ink); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .logo {
+    font-family: var(--display);
+    font-size: 19px; font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #fff;
+    display: flex; align-items: center; gap: 10px;
+    transition: color 0.4s var(--ease);
+  }
+  .logo-bar { display: inline-block; width: 6px; height: 18px; background: var(--accent); }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links > li { display: flex; align-items: center; }
+  .nav-links a {
+    color: rgba(255,255,255,0.85);
+    padding: 6px 0; position: relative;
+    transition: color 0.3s var(--ease);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav.on-light .nav-links a:hover { color: var(--navy); }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; bottom: 0;
+    width: 0; height: 2px; background: var(--accent);
+    transition: width 0.3s var(--ease);
+  }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* Dropdown */
+  .nav-dropdown { position: relative; }
+  .nav-dd-trigger { /* inherits .nav-links a now */ }
+  .dd-arr {
+    font-size: 9px;
+    transition: transform 0.3s var(--ease);
+    line-height: 1;
+    display: inline-block;
+    transform: translateY(-1px);
+  }
+  .nav-dropdown:hover .dd-arr { transform: translateY(-1px) rotate(180deg); }
+  .nav-dd-menu {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: -20px;
+    min-width: 380px;
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: 0 24px 60px rgba(5,28,44,0.12);
+    padding: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: all 0.3s var(--ease);
+    z-index: 70;
+  }
+  .nav-dropdown:hover .nav-dd-menu,
+  .nav-dropdown:focus-within .nav-dd-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-dd-menu a {
+    display: block;
+    padding: 14px 18px;
+    color: var(--ink) !important;
+    transition: background 0.2s var(--ease);
+    border-radius: 2px;
+  }
+  .nav-dd-menu a::after { display: none; }
+  .nav-dd-menu a:hover { background: var(--bg); }
+  .nav-dd-menu .dd-item-title {
+    display: block;
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .nav-dd-menu .dd-item-desc {
+    display: block;
+    font-size: 12px;
+    color: var(--ink-mute);
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+  .nav-dd-menu .dd-featured {
+    margin-top: 6px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+  .nav-dd-menu .dd-featured .dd-item-title { color: var(--accent-deep); }
+  /* Always show dropdown text dark even on dark nav */
+  .nav-dd-menu a, .nav-dd-menu .dd-item-title, .nav-dd-menu .dd-item-desc { color: var(--ink) !important; }
+  .nav-dd-menu .dd-item-desc { color: var(--ink-mute) !important; }
+  .nav-dd-menu .dd-featured .dd-item-title { color: var(--accent-deep) !important; }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 22px;
+    background: var(--accent); color: var(--navy);
+    font-size: 13px; font-weight: 600;
+    transition: all 0.3s var(--ease);
+  }
+  .nav-cta:hover { background: #fff; }
+  .nav-cta .arr { transition: transform 0.3s var(--ease); }
+  .nav-cta:hover .arr { transform: translateX(4px); }
+  .menu-toggle {
+    display: none; background: none; border: 0; cursor: pointer;
+    width: 32px; height: 32px;
+    flex-direction: column; justify-content: center; align-items: flex-end; gap: 5px;
+  }
+  .menu-toggle span { display: block; width: 24px; height: 2px; background: #fff; transition: all 0.3s var(--ease); }
+  .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--ink); }
+  .menu-toggle.open span:nth-child(2) { opacity: 0; }
+  .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--ink); width: 24px; }
+
+  .mobile-menu {
+    position: fixed; inset: 0; background: var(--paper);
+    z-index: 59;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 100px var(--gutter) 60px;
+    transform: translateY(-100%);
+    transition: transform 0.5s var(--ease);
+    visibility: hidden;
+  }
+  .mobile-menu.open { transform: translateY(0); visibility: visible; }
+  .mobile-menu ul { list-style: none; }
+  .mobile-menu li { border-top: 1px solid var(--line); padding: 20px 0; }
+  .mobile-menu li:last-child { border-bottom: 1px solid var(--line); }
+  .mobile-menu a {
+    font-family: var(--display); font-size: 30px; font-weight: 500;
+    color: var(--ink);
+    display: flex; justify-content: space-between; align-items: center;
+    letter-spacing: -0.02em;
+  }
+  .mobile-menu a .n { font-family: var(--body); font-size: 12px; color: var(--ink-mute); letter-spacing: 0.12em; font-weight: 500; }
+  .m-group { padding: 20px 0; border-top: 1px solid var(--line); }
+  .m-group-title {
+    font-family: var(--display);
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .m-sublist { list-style: none; padding-left: 0; }
+  .m-sublist li { border-top: 0; padding: 0; }
+  .m-sublist .m-sub {
+    font-size: 16px;
+    font-family: var(--body);
+    font-weight: 500;
+    color: var(--ink-2);
+    padding: 10px 0;
+    display: block;
+    border-top: 1px solid var(--bg-2);
+  }
+  .m-sublist li:first-child .m-sub { border-top: 0; }
+  .mobile-cta {
+    margin-top: 40px;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 28px; background: var(--navy); color: #fff;
+    font-size: 14px; font-weight: 600;
+    align-self: flex-start;
+  }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--body); font-size: 14px; font-weight: 600;
+    letter-spacing: 0.01em; cursor: pointer; border: 0;
+    transition: all 0.3s var(--ease);
+  }
+  .btn-primary { padding: 18px 32px; background: var(--accent); color: var(--navy); }
+  .btn-primary:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(5,28,44,0.18); }
+  .btn-primary .arr, .btn-dark .arr, .btn-ghost .arr, .btn-text .arr { transition: transform 0.3s var(--ease); }
+  .btn-primary:hover .arr, .btn-dark:hover .arr, .btn-ghost:hover .arr, .btn-text:hover .arr { transform: translateX(5px); }
+  .btn-dark { padding: 18px 32px; background: var(--navy); color: #fff; }
+  .btn-dark:hover { background: var(--navy-2); transform: translateY(-2px); }
+  .btn-ghost { color: #fff; padding: 18px 0; position: relative; border-bottom: 1px solid rgba(255,255,255,0.3); }
+  .btn-ghost::after {
+    content: ''; position: absolute; left: 0; bottom: -1px;
+    width: 0; height: 1px; background: var(--accent);
+    transition: width 0.4s var(--ease);
+  }
+  .btn-ghost:hover::after { width: 100%; }
+  .btn-text { color: var(--ink); padding: 6px 0; border-bottom: 1px solid var(--ink); }
+
+  /* HERO */
+  .hero {
+    background: var(--navy); color: #fff;
+    min-height: 100vh;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+    padding-top: 140px; padding-bottom: 60px;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: 0; right: 0;
+    width: 60%; height: 100%;
+    background:
+      radial-gradient(circle at 70% 30%, rgba(229,179,66,0.1), transparent 60%),
+      radial-gradient(circle at 30% 70%, rgba(10,53,84,0.6), transparent 60%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative; z-index: 2;
+  }
+  .hero h1 { color: #fff; }
+  .hero h1 .accent { color: var(--accent); font-style: italic; font-weight: 400; }
+  .hero-headline { margin: 32px 0 40px; max-width: 16ch; }
+  .hero-sub {
+    color: rgba(255,255,255,0.78);
+    font-size: 19px; line-height: 1.55;
+    max-width: 52ch; margin-bottom: 48px;
+  }
+  .hero-ctas { display: flex; gap: 32px; align-items: center; flex-wrap: wrap; }
+
+  .hero-visual { position: relative; aspect-ratio: 4/5; width: 100%; }
+  .hero-img-main {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #2A3A48, #0A3554);
+    overflow: hidden;
+  }
+  .hero-img-main svg, .hero-img-main img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-img-stat {
+    position: absolute; bottom: -40px; left: -40px;
+    background: var(--accent); color: var(--navy);
+    padding: 28px 32px; max-width: 240px; z-index: 2;
+  }
+  .hero-img-stat .big {
+    font-family: var(--display);
+    font-size: 48px; font-weight: 600;
+    letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px;
+  }
+  .hero-img-stat .lbl {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    line-height: 1.4;
+  }
+  .hero-strip {
+    margin-top: 60px; padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    display: grid; grid-template-columns: auto 1fr auto;
+    gap: 48px; align-items: center;
+    position: relative; z-index: 2;
+  }
+  .hero-strip-text { font-size: 12px; letter-spacing: 0.04em; color: rgba(255,255,255,0.6); text-transform: uppercase; }
+  .hero-stat-inline { font-size: 13px; color: rgba(255,255,255,0.7); }
+  .hero-stat-inline strong { color: #fff; font-weight: 600; }
+  .hero-strip-locs { display: flex; gap: 40px; justify-self: end; }
+  .hero-strip-locs span {
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: #fff; position: relative; padding-left: 14px;
+  }
+  .hero-strip-locs span::before {
+    content: ''; position: absolute; left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 5px; height: 5px; background: var(--accent);
+  }
+
+  .sec-head {
+    display: grid; grid-template-columns: 1fr 2fr;
+    gap: 64px; margin-bottom: 72px; align-items: end;
+  }
+  .sec-head .num { margin-bottom: 24px; display: block; }
+
+  /* ABOUT US */
+  .about-us { background: var(--paper); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-lead-text {
+    font-family: var(--display);
+    font-size: clamp(20px, 1.9vw, 24px);
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 28px;
+    max-width: 32ch;
+  }
+  .about-lead-text:last-child { margin-bottom: 0; }
+  .about-lead-text:first-child { color: var(--ink); }
+  .about-lead-text:last-child { color: var(--ink-2); }
+
+  .about-pillars {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+  }
+  .about-pillar {
+    padding: 32px 28px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+    transition: background 0.3s var(--ease);
+  }
+  .about-pillar:hover { background: var(--bg); }
+  .about-pillar-num {
+    font-family: var(--display);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent-deep);
+    letter-spacing: 0.04em;
+    display: block;
+    margin-bottom: 18px;
+  }
+  .about-pillar h4 {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 12px;
+    letter-spacing: -0.015em;
+  }
+  .about-pillar p {
+    color: var(--ink-2);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .about-cta {
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 1024px) {
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+  @media (max-width: 600px) {
+    .about-pillars { grid-template-columns: 1fr; }
+  }
+
+  /* PROBLEMS */
+  .problems { background: var(--paper); }
+  .problems-intro {
+    font-family: var(--display);
+    font-size: clamp(24px, 2.4vw, 30px);
+    line-height: 1.3; font-weight: 400;
+    letter-spacing: -0.015em; max-width: 28ch;
+  }
+  .problems-intro em { font-style: normal; color: var(--accent-deep); }
+  .problem-list { list-style: none; margin-top: 16px; }
+  .problem {
+    display: grid; grid-template-columns: 60px 1fr 200px;
+    gap: 32px; align-items: center;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+    transition: padding 0.4s var(--ease);
+    position: relative;
+  }
+  .problem:last-child { border-bottom: 1px solid var(--line); }
+  .problem:hover { padding-left: 24px; padding-right: 24px; }
+  .problem:hover .p-text { color: var(--navy); }
+  .p-num { font-family: var(--display); font-size: 14px; font-weight: 500; color: var(--accent-deep); }
+  .p-text {
+    font-family: var(--display);
+    font-size: clamp(22px, 2.4vw, 30px);
+    font-weight: 400; letter-spacing: -0.02em;
+    line-height: 1.2;
+    transition: color 0.3s var(--ease);
+  }
+  .p-tag {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-mute);
+    justify-self: end;
+    padding: 6px 14px; background: var(--bg);
+    border: 1px solid var(--line);
+  }
+
+  /* FEATURED */
+  .featured {
+    background: var(--navy); color: #fff;
+    position: relative; overflow: hidden;
+  }
+  .featured::before {
+    content: '';
+    position: absolute; top: 10%; right: -10%;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(229,179,66,0.08), transparent 60%);
+    pointer-events: none;
+  }
+  .featured h2 { color: #fff; max-width: 18ch; }
+  .featured-top {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: end;
+    margin-bottom: 80px;
+    position: relative; z-index: 2;
+  }
+  .featured-top-right p {
+    color: rgba(255,255,255,0.78);
+    font-size: 17px; line-height: 1.65;
+    max-width: 48ch;
+  }
+  .featured-grid {
+    display: grid; grid-template-columns: 1.1fr 1fr;
+    gap: 80px;
+    position: relative; z-index: 2;
+  }
+  .featured-img {
+    aspect-ratio: 5/6;
+    overflow: hidden;
+    background: var(--navy-3);
+  }
+  .featured-img svg, .featured-img img { width: 100%; height: 100%; object-fit: cover; }
+  .featured-body h4 {
+    font-family: var(--body);
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px; margin-top: 32px;
+  }
+  .featured-body h4:first-child { margin-top: 0; }
+  .featured-body p { color: rgba(255,255,255,0.85); font-size: 16px; line-height: 1.7; }
+  .delivers { list-style: none; margin-top: 8px; }
+  .delivers li {
+    display: grid; grid-template-columns: 20px 1fr;
+    gap: 16px; padding: 14px 0;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.92);
+    font-size: 15px;
+  }
+  .delivers li:last-child { border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .delivers .ck { color: var(--accent); font-weight: 700; }
+  .featured-cta { margin-top: 48px; display: flex; gap: 28px; flex-wrap: wrap; align-items: center; }
+
+  /* SERVICES */
+  .services { background: var(--bg); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;
+  }
+  .svc {
+    background: #fff;
+    padding: 48px;
+    position: relative;
+    transition: all 0.4s var(--ease);
+    border: 1px solid var(--line);
+    display: flex; flex-direction: column;
+    min-height: 620px;
+  }
+  .svc:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(5,28,44,0.08); border-color: var(--navy); }
+  .svc-img {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    margin: -48px -48px 32px;
+    background: var(--bg-2);
+    position: relative;
+  }
+  .svc-img svg, .svc-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease);
+  }
+  .svc:hover .svc-img svg, .svc:hover .svc-img img { transform: scale(1.05); }
+  .svc-img::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(5,28,44,0) 50%, rgba(5,28,44,0.4));
+    pointer-events: none;
+  }
+  .svc-num {
+    position: absolute; top: 24px; left: 24px;
+    color: #fff;
+    font-family: var(--display);
+    font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+    z-index: 2;
+  }
+  .svc-label {
+    position: absolute; top: 24px; right: 24px;
+    background: var(--accent); color: var(--navy);
+    padding: 4px 12px;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    z-index: 2;
+  }
+  .svc h3 { margin-bottom: 24px; }
+  .svc-meta {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .svc-meta:last-of-type {
+    margin-bottom: 24px;
+    flex: 1;
+  }
+  .svc-meta-label {
+    display: block;
+    font-family: var(--body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin-bottom: 10px;
+  }
+  .svc-meta-text {
+    color: var(--ink-2);
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .svc-foot {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: 8px;
+  }
+  .svc-link {
+    font-size: 13px; font-weight: 600; color: var(--navy);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .svc-link .arr { transition: transform 0.3s var(--ease); }
+  .svc:hover .svc-link .arr { transform: translateX(5px); }
+
+  /* ENGAGEMENT MODELS */
+  .engagement {
+    background: var(--navy);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .engagement::before {
+    content: '';
+    position: absolute; bottom: -10%; left: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(229,179,66,0.06), transparent 60%);
+    pointer-events: none;
+  }
+  .engagement h2 { color: #fff; }
+  .engagement-lead {
+    font-family: var(--display);
+    font-size: clamp(20px, 1.9vw, 24px);
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.015em;
+    color: rgba(255,255,255,0.85);
+    max-width: 70ch;
+    margin-bottom: 72px;
+    position: relative;
+    z-index: 2;
+  }
+  .engagement-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .model {
+    background: var(--navy-2);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s var(--ease);
+    position: relative;
+  }
+  .model:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    background: var(--navy-3);
+  }
+  .model-featured {
+    background: var(--navy-3);
+    border-color: rgba(229,179,66,0.3);
+  }
+  .model-featured::before {
+    content: 'MOST POPULAR';
+    position: absolute;
+    top: -1px; right: -1px;
+    background: var(--accent);
+    color: var(--navy);
+    font-family: var(--body);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    padding: 6px 12px;
+  }
+  .model-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .model-num {
+    font-family: var(--display);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+  }
+  .model-tag {
+    font-family: var(--body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+  .model h3 {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    letter-spacing: -0.025em;
+  }
+  .model-summary {
+    font-family: var(--display);
+    color: var(--accent);
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 28px;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+  .model-list {
+    list-style: none;
+    margin-bottom: 28px;
+    flex: 1;
+  }
+  .model-list li {
+    color: rgba(255,255,255,0.85);
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 10px 0 10px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+  }
+  .model-list li:last-child { border-bottom: 0; }
+  .model-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 18px;
+    width: 12px; height: 1px;
+    background: var(--accent);
+  }
+  .model-foot {
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+  .model-foot-label {
+    display: block;
+    font-family: var(--body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .model-foot p {
+    color: rgba(255,255,255,0.75);
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .engagement-note {
+    margin-top: 64px;
+    padding: 40px 48px;
+    background: rgba(255,255,255,0.04);
+    border-left: 3px solid var(--accent);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 32px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  .engagement-note-label {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  .engagement-note p {
+    color: rgba(255,255,255,0.78);
+    font-size: 15px;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .engagement-grid { grid-template-columns: 1fr; gap: 20px; }
+    .engagement-note { grid-template-columns: 1fr; gap: 20px; text-align: left; padding: 32px; }
+  }
+
+  /* APPROACH (now: WHAT THIS LOOKS LIKE) */
+  .approach { background: var(--paper); }
+
+  /* Case tabs */
+  .cases-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 2px solid var(--navy);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 64px;
+  }
+  .case-tab {
+    background: transparent;
+    border: 0;
+    border-right: 1px solid var(--line);
+    padding: 32px 28px;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    transition: all 0.3s var(--ease);
+  }
+  .case-tab:last-child { border-right: 0; }
+  .case-tab::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: 0;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: width 0.5s var(--ease);
+  }
+  .case-tab.active::before { width: 100%; }
+  .case-tab:hover { background: var(--bg); }
+  .case-tab.active { background: var(--bg-2); }
+  .case-tab-num {
+    font-family: var(--display);
+    font-size: 12px; font-weight: 500;
+    color: var(--accent-deep);
+    letter-spacing: 0.04em;
+  }
+  .case-tab-title {
+    font-family: var(--display);
+    font-size: clamp(20px, 2vw, 26px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .case-tab-title .sub {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-mute);
+    letter-spacing: 0;
+    margin-top: 6px;
+    font-family: var(--body);
+  }
+
+  /* Case panel */
+  .case-panels { position: relative; min-height: 540px; }
+  .case-panel {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+    pointer-events: none;
+  }
+  .case-panel.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+  .case-toggle {
+    display: inline-flex;
+    background: var(--bg-2);
+    padding: 4px;
+    border-radius: 999px;
+    margin-bottom: 40px;
+    border: 1px solid var(--line);
+  }
+  .case-toggle button {
+    background: transparent;
+    border: 0;
+    padding: 10px 24px;
+    font-family: var(--body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--ink-mute);
+    border-radius: 999px;
+    transition: all 0.3s var(--ease);
+  }
+  .case-toggle button.on {
+    background: var(--navy);
+    color: #fff;
+  }
+
+  .case-states { position: relative; min-height: 400px; }
+  .case-state {
+    position: absolute; inset: 0;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+    pointer-events: none;
+  }
+  .case-state.on { opacity: 1; transform: translateX(0); pointer-events: auto; }
+
+  .case-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* Before state styling */
+  .case-state.before-state .case-vis {
+    background: linear-gradient(135deg, #2a1f1f, #1a1010);
+    border: 1px solid #5a2a2a;
+  }
+  .case-state.after-state .case-vis {
+    background: linear-gradient(135deg, #0a3554, #051c2c);
+    border: 1px solid #1a4f70;
+  }
+  .case-vis {
+    aspect-ratio: 4/3;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .case-vis svg { width: 100%; height: 100%; }
+
+  .case-body h4 {
+    font-family: var(--body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .case-state.before-state .case-body h4 { color: #C42E2E; }
+  .case-state.after-state .case-body h4 { color: var(--accent-deep); }
+  .case-state.before-state .case-body h4::before,
+  .case-state.after-state .case-body h4::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    margin-right: 12px;
+    vertical-align: middle;
+  }
+  .case-state.before-state .case-body h4::before { background: #C42E2E; }
+  .case-state.after-state .case-body h4::before { background: var(--accent-deep); }
+
+  .case-body h3 {
+    font-size: clamp(26px, 2.6vw, 36px);
+    margin-bottom: 24px;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+  .case-body p {
+    color: var(--ink-2);
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+  .case-stat {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 20px 28px;
+    background: var(--bg);
+    border-left: 4px solid var(--accent);
+    margin-top: 8px;
+  }
+  .case-state.before-state .case-stat { border-left-color: #C42E2E; }
+  .case-stat-big {
+    font-family: var(--display);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .case-state.before-state .case-stat-big { color: #C42E2E; }
+  .case-stat-lbl {
+    font-size: 13px;
+    color: var(--ink-2);
+    max-width: 28ch;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 1024px) {
+    .case-grid { grid-template-columns: 1fr; gap: 40px; }
+    .cases-tabs { grid-template-columns: 1fr; }
+    .case-tab { border-right: 0; border-bottom: 1px solid var(--line); }
+    .case-tab:last-child { border-bottom: 0; }
+    .case-tab::before { display: none; }
+    .case-tab.active { background: var(--navy); }
+    .case-tab.active .case-tab-title,
+    .case-tab.active .case-tab-title .sub { color: #fff; }
+    .case-tab.active .case-tab-num { color: var(--accent); }
+  }
+
+  /* PROOF */
+  .proof { background: var(--bg); padding: 100px 0; }
+  .proof-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .proof-vis {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    position: relative;
+    background: var(--navy);
+  }
+  .proof-vis svg, .proof-vis img { width: 100%; height: 100%; object-fit: cover; }
+  .proof-stat {
+    font-family: var(--display);
+    font-size: clamp(72px, 11vw, 160px);
+    font-weight: 500; line-height: 0.92;
+    letter-spacing: -0.055em;
+    color: var(--navy); margin-bottom: 32px;
+  }
+  .proof-stat .from { color: var(--ink-mute); font-weight: 400; }
+  .proof-stat .arrow { color: var(--accent-deep); margin: 0 12px; font-weight: 400; }
+  .proof-text {
+    font-family: var(--display);
+    font-size: clamp(20px, 2vw, 24px);
+    font-weight: 400; line-height: 1.4;
+    letter-spacing: -0.015em;
+    margin-bottom: 32px; max-width: 38ch;
+  }
+  .proof-meta {
+    display: flex; gap: 24px;
+    padding-top: 24px; border-top: 1px solid var(--line);
+    font-size: 12px; color: var(--ink-mute);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 500;
+  }
+  .proof-meta strong { color: var(--ink); font-weight: 600; }
+
+  /* QUOTES / PRINCIPLES */
+  .quotes { background: var(--navy); color: #fff; }
+  .quotes h2 { color: #fff; }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    margin-top: 24px;
+  }
+  .principle {
+    padding: 56px 48px 56px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    border-right: 1px solid rgba(255,255,255,0.12);
+    position: relative;
+  }
+  .principle:nth-child(even) {
+    padding-left: 48px;
+    padding-right: 0;
+    border-right: 0;
+  }
+  .principle:nth-last-child(-n+2) { border-bottom: 0; }
+  .principle-num {
+    font-family: var(--display);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 24px;
+  }
+  .principle h3 {
+    color: #fff;
+    font-size: clamp(24px, 2.4vw, 32px);
+    margin-bottom: 18px;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+  }
+  .principle p {
+    color: rgba(255,255,255,0.78);
+    font-size: 16px;
+    line-height: 1.65;
+    max-width: 38ch;
+  }
+  @media (max-width: 768px) {
+    .principles-grid { grid-template-columns: 1fr; }
+    .principle { padding: 40px 0 !important; border-right: 0 !important; }
+    .principle:nth-last-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .principle:last-child { border-bottom: 0; }
+  }
+
+  /* INSIGHTS */
+  .insights { background: var(--paper); }
+  .ins-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  .ins { cursor: pointer; display: flex; flex-direction: column; }
+  .ins-img {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: var(--bg-2);
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .ins-img svg, .ins-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s var(--ease);
+  }
+  .ins:hover .ins-img svg, .ins:hover .ins-img img { transform: scale(1.06); }
+  .ins-cat {
+    position: absolute; top: 16px; left: 16px;
+    background: var(--navy); color: #fff;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 6px 12px;
+    z-index: 2;
+  }
+  .ins-meta {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 14px;
+    font-size: 12px; color: var(--ink-mute);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    font-weight: 500;
+  }
+  .ins-meta .sep { width: 14px; height: 1px; background: var(--line); }
+  .ins h3 {
+    font-size: 22px; line-height: 1.2;
+    margin-bottom: 12px;
+    transition: color 0.3s var(--ease);
+  }
+  .ins:hover h3 { color: var(--accent-deep); }
+  .ins p { color: var(--ink-2); font-size: 15px; line-height: 1.6; }
+
+  /* STUDENTS */
+  .students { background: var(--navy); color: #fff; overflow: hidden; position: relative; }
+  .stu-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .stu-img { aspect-ratio: 4/5; overflow: hidden; position: relative; background: var(--navy-3); }
+  .stu-img svg { width: 100%; height: 100%; }
+  .stu-img-tag {
+    position: absolute; bottom: 24px; left: 24px;
+    background: var(--accent); color: var(--navy);
+    padding: 12px 20px;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    z-index: 2;
+  }
+  .students h2 { color: #fff; max-width: 14ch; }
+  .stu-text {
+    color: rgba(255,255,255,0.78);
+    font-size: 17px; line-height: 1.65;
+    margin: 32px 0 40px; max-width: 44ch;
+  }
+
+  /* FINAL */
+  .final { background: var(--paper); padding: 140px 0; }
+  .final-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .final h2 {
+    font-size: clamp(40px, 5.5vw, 76px);
+    max-width: 14ch; line-height: 1;
+  }
+  .final h2 em { font-style: italic; color: var(--accent-deep); font-weight: 400; }
+  .final-right p {
+    color: var(--ink-2); font-size: 17px;
+    line-height: 1.65;
+    margin-bottom: 40px; max-width: 42ch;
+  }
+  .final-ctas { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-bottom: 32px; }
+  .final-or {
+    font-size: 12px; color: var(--ink-mute);
+    letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 500;
+  }
+  .final-meta {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 24px; padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+  .final-meta-item .label-sm {
+    font-size: 11px; color: var(--ink-mute);
+    letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 600; margin-bottom: 6px;
+  }
+  .final-meta-item .val {
+    font-family: var(--display);
+    font-size: 16px; font-weight: 500;
+    color: var(--ink);
+  }
+
+  /* FOOTER */
+  footer { background: #03131F; color: rgba(255,255,255,0.65); padding: 100px 0 40px; }
+  .f-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr;
+    gap: 64px; padding-bottom: 72px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  footer h4 {
+    font-family: var(--body);
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 24px;
+  }
+  .f-brand .logo { color: #fff; font-size: 22px; margin-bottom: 20px; }
+  .f-brand p { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.65; max-width: 38ch; }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 12px; }
+  footer ul a {
+    color: rgba(255,255,255,0.7); font-size: 14px;
+    transition: color 0.3s var(--ease);
+  }
+  footer ul a:hover { color: var(--accent); }
+  .f-news p { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.6; margin-bottom: 18px; }
+  .f-form {
+    display: flex;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    padding-bottom: 10px;
+    transition: border-color 0.3s var(--ease);
+  }
+  .f-form:focus-within { border-color: var(--accent); }
+  .f-form input {
+    flex: 1; background: transparent; border: 0;
+    color: #fff;
+    font-family: var(--body); font-size: 14px;
+    padding: 8px 0; outline: none;
+  }
+  .f-form input::placeholder { color: rgba(255,255,255,0.35); }
+  .f-form button {
+    background: transparent; border: 0;
+    color: var(--accent); cursor: pointer;
+    padding: 4px 0 4px 16px;
+    font-size: 13px; font-weight: 600;
+    transition: transform 0.3s var(--ease);
+  }
+  .f-form button:hover { transform: translateX(4px); }
+  .f-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 40px;
+    font-size: 12px; color: rgba(255,255,255,0.45);
+    flex-wrap: wrap; gap: 16px;
+  }
+  .f-bottom-links { display: flex; gap: 28px; }
+  .f-bottom a { color: rgba(255,255,255,0.5); }
+  .f-bottom a:hover { color: var(--accent); }
+
+  /* WA */
+  .wa {
+    position: fixed; bottom: 24px; right: 24px;
+    width: 60px; height: 60px;
+    background: #25D366; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 50;
+    box-shadow: 0 10px 32px rgba(5,28,44,0.25);
+    opacity: 0; visibility: hidden;
+    transform: translateY(10px) scale(0.85);
+    transition: all 0.4s var(--ease);
+  }
+  .wa.show { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+  .wa:hover { transform: scale(1.06); }
+  .wa svg { width: 28px; height: 28px; color: #fff; }
+  .wa-label {
+    position: absolute; right: 72px;
+    background: var(--navy); color: #fff;
+    padding: 10px 18px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.04em;
+    white-space: nowrap;
+    opacity: 0; transform: translateX(8px);
+    transition: all 0.3s var(--ease);
+    pointer-events: none;
+  }
+  .wa:hover .wa-label { opacity: 1; transform: translateX(0); }
+
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+  .delay-4 { transition-delay: 0.4s; }
+
+  /* SVG portrait styling */
+  .portrait-svg { width: 100%; height: 100%; }
+
+  @media (max-width: 1024px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+    .hero-visual { max-width: 480px; }
+    .featured-grid { grid-template-columns: 1fr; gap: 48px; }
+    .proof-inner, .stu-grid, .final-inner, .featured-top { grid-template-columns: 1fr; gap: 48px; }
+    .ins-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .nav-links, .nav-cta { display: none; }
+    .nav-dd-menu { display: none !important; }
+    .menu-toggle { display: flex; }
+    .hero { padding-top: 110px; min-height: auto; padding-bottom: 80px; }
+    .hero-strip { grid-template-columns: 1fr; gap: 16px; }
+    .hero-strip-locs { justify-self: start; gap: 24px; flex-wrap: wrap; }
+    .sec-head { grid-template-columns: 1fr; gap: 24px; margin-bottom: 48px; }
+    .problem { grid-template-columns: 40px 1fr; gap: 20px; }
+    .p-tag { grid-column: 2; justify-self: start; }
+    .services-grid { grid-template-columns: 1fr; gap: 24px; }
+    .svc { padding: 36px; min-height: 0; }
+    .svc-img { margin: -36px -36px 28px; }
+    .ins-grid { grid-template-columns: 1fr; gap: 48px; }
+    .f-top { grid-template-columns: 1fr 1fr; gap: 40px 24px; }
+    .f-brand, .f-news { grid-column: 1 / -1; }
+    .hero-img-stat { padding: 20px 24px; bottom: -28px; left: -20px; }
+    .hero-img-stat .big { font-size: 36px; }
+  }
+  @media (max-width: 480px) {
+    .q { grid-template-columns: 1fr; gap: 32px; }
+    .q-img { max-width: 240px; }
+    .final-ctas { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .f-top { grid-template-columns: 1fr; }
+    .f-bottom { flex-direction: column; align-items: flex-start; }
+    .final-meta { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Reusable SVG portrait definitions -->
+<svg width="0" height="0" style="position:absolute;" aria-hidden="true">
+  <defs>
+    <!-- HERO: senior consultant in navy, looking forward -->
+    <symbol id="portrait-hero" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bg-hero" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#0A3554"/>
+          <stop offset="1" stop-color="#051C2C"/>
+        </linearGradient>
+        <linearGradient id="suit-hero" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#1A2B3A"/>
+          <stop offset="1" stop-color="#0A1620"/>
+        </linearGradient>
+        <radialGradient id="face-hero" cx="0.5" cy="0.4" r="0.7">
+          <stop offset="0" stop-color="#7A5239"/>
+          <stop offset="0.6" stop-color="#5B3A2A"/>
+          <stop offset="1" stop-color="#3A2519"/>
+        </radialGradient>
+      </defs>
+      <rect width="400" height="500" fill="url(#bg-hero)"/>
+      <!-- ambient light spot -->
+      <circle cx="280" cy="120" r="180" fill="#E5B342" opacity="0.06"/>
+      <!-- shoulders / suit -->
+      <path d="M 70 500 L 70 400 Q 70 340 130 320 L 200 310 L 270 320 Q 330 340 330 400 L 330 500 Z" fill="url(#suit-hero)"/>
+      <!-- shirt -->
+      <path d="M 170 320 L 200 360 L 230 320 L 230 380 L 170 380 Z" fill="#F4F1EC"/>
+      <!-- neck -->
+      <ellipse cx="200" cy="300" rx="32" ry="28" fill="#5B3A2A"/>
+      <!-- head -->
+      <ellipse cx="200" cy="220" rx="78" ry="92" fill="url(#face-hero)"/>
+      <!-- hair / short cut -->
+      <path d="M 130 180 Q 130 130 200 125 Q 270 130 270 180 Q 270 165 250 158 Q 220 152 200 152 Q 180 152 150 158 Q 130 165 130 180 Z" fill="#1A1410"/>
+      <!-- subtle facial features -->
+      <ellipse cx="178" cy="225" rx="6" ry="4" fill="#1A1410" opacity="0.7"/>
+      <ellipse cx="222" cy="225" rx="6" ry="4" fill="#1A1410" opacity="0.7"/>
+      <path d="M 195 260 Q 200 265 205 260" stroke="#3A2519" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M 182 280 Q 200 290 218 280" stroke="#2A1810" stroke-width="2" fill="none" opacity="0.7"/>
+      <!-- subtle facial highlights -->
+      <ellipse cx="200" cy="195" rx="40" ry="20" fill="#8B6347" opacity="0.25"/>
+      <!-- light edge from window -->
+      <rect x="0" y="0" width="400" height="500" fill="url(#edge-light)" opacity="0.3"/>
+      <linearGradient id="edge-light" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="transparent"/>
+        <stop offset="0.7" stop-color="transparent"/>
+        <stop offset="1" stop-color="#E5B342" stop-opacity="0.15"/>
+      </linearGradient>
+    </symbol>
+
+    <!-- FEATURED: thoughtful seated leader -->
+    <symbol id="portrait-featured" viewBox="0 0 400 480" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bg-feat" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#082A40"/>
+          <stop offset="1" stop-color="#03131F"/>
+        </linearGradient>
+        <linearGradient id="suit-feat" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2A1810"/>
+          <stop offset="1" stop-color="#1A0F08"/>
+        </linearGradient>
+        <radialGradient id="face-feat" cx="0.5" cy="0.4" r="0.7">
+          <stop offset="0" stop-color="#6F4A36"/>
+          <stop offset="0.6" stop-color="#4A2F22"/>
+          <stop offset="1" stop-color="#2A1810"/>
+        </radialGradient>
+      </defs>
+      <rect width="400" height="480" fill="url(#bg-feat)"/>
+      <circle cx="320" cy="80" r="160" fill="#E5B342" opacity="0.08"/>
+      <!-- seated posture, slight lean -->
+      <path d="M 50 480 L 80 380 Q 100 340 150 330 L 200 320 L 250 330 Q 300 340 320 380 L 350 480 Z" fill="url(#suit-feat)"/>
+      <!-- collar / shirt v -->
+      <path d="M 180 330 L 200 370 L 220 330 L 220 380 L 180 380 Z" fill="#D8D2C7"/>
+      <ellipse cx="200" cy="305" rx="30" ry="26" fill="#4A2F22"/>
+      <!-- head, slightly turned -->
+      <ellipse cx="205" cy="225" rx="76" ry="90" fill="url(#face-feat)"/>
+      <!-- hair, cropped -->
+      <path d="M 135 185 Q 140 135 205 130 Q 275 135 275 185 Q 270 168 250 162 Q 225 158 205 158 Q 185 158 155 162 Q 135 168 135 185 Z" fill="#0F0A06"/>
+      <!-- facial features -->
+      <ellipse cx="180" cy="228" rx="5" ry="3.5" fill="#0F0A06" opacity="0.8"/>
+      <ellipse cx="225" cy="228" rx="5" ry="3.5" fill="#0F0A06" opacity="0.8"/>
+      <!-- light beard -->
+      <path d="M 165 270 Q 205 295 245 270 Q 245 295 230 305 Q 205 312 180 305 Q 165 295 165 270 Z" fill="#1A0F08" opacity="0.4"/>
+      <path d="M 188 285 Q 205 293 222 285" stroke="#1A0F08" stroke-width="2" fill="none"/>
+      <ellipse cx="205" cy="200" rx="35" ry="18" fill="#8B6347" opacity="0.2"/>
+    </symbol>
+
+    <!-- SERVICE 1: team workshop scene (abstract) -->
+    <symbol id="scene-sprint" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bg-s1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#1F3A4D"/>
+          <stop offset="1" stop-color="#0A3554"/>
+        </linearGradient>
+      </defs>
+      <rect width="800" height="450" fill="url(#bg-s1)"/>
+      <!-- big window light source -->
+      <rect x="500" y="60" width="240" height="300" fill="#E5B342" opacity="0.15"/>
+      <rect x="500" y="60" width="240" height="300" fill="none" stroke="#E5B342" stroke-width="1" opacity="0.3"/>
+      <!-- three figures, profile view, sitting -->
+      <g transform="translate(80, 200)">
+        <!-- figure 1 -->
+        <ellipse cx="40" cy="60" rx="28" ry="32" fill="#5B3A2A"/>
+        <path d="M 12 50 Q 12 22 40 20 Q 68 22 68 50" fill="#1A1410"/>
+        <path d="M 0 250 L 0 130 Q 0 100 40 95 Q 80 100 80 130 L 80 250 Z" fill="#1A2B3A"/>
+      </g>
+      <g transform="translate(220, 180)">
+        <ellipse cx="40" cy="60" rx="30" ry="34" fill="#6F4A36"/>
+        <path d="M 10 55 Q 5 22 40 18 Q 75 22 70 55 Q 65 35 40 33 Q 15 35 10 55" fill="#0F0A06"/>
+        <path d="M 0 270 L 0 130 Q 0 100 40 95 Q 80 100 80 130 L 80 270 Z" fill="#3A2A1F"/>
+      </g>
+      <g transform="translate(360, 195)">
+        <ellipse cx="40" cy="60" rx="28" ry="32" fill="#7A5239"/>
+        <path d="M 12 50 Q 12 22 40 20 Q 68 22 68 50" fill="#1A1410"/>
+        <path d="M 0 255 L 0 130 Q 0 100 40 95 Q 80 100 80 130 L 80 255 Z" fill="#082A40"/>
+      </g>
+      <!-- table edge -->
+      <rect x="0" y="380" width="800" height="70" fill="#D8C9B5" opacity="0.4"/>
+      <line x1="0" y1="380" x2="800" y2="380" stroke="#E5B342" stroke-width="1" opacity="0.5"/>
+    </symbol>
+
+    <!-- SERVICE 2: manager training - one figure presenting -->
+    <symbol id="scene-leadership" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bg-s2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#F4F1EC"/>
+          <stop offset="1" stop-color="#E3DDD0"/>
+        </linearGradient>
+      </defs>
+      <rect width="800" height="450" fill="url(#bg-s2)"/>
+      <!-- whiteboard -->
+      <rect x="60" y="40" width="380" height="240" fill="#FFFFFF" stroke="#D8D2C7" stroke-width="2"/>
+      <!-- chart lines on board -->
+      <line x1="90" y1="200" x2="200" y2="120" stroke="#051C2C" stroke-width="3"/>
+      <line x1="200" y1="120" x2="300" y2="150" stroke="#051C2C" stroke-width="3"/>
+      <line x1="300" y1="150" x2="400" y2="80" stroke="#E5B342" stroke-width="3"/>
+      <circle cx="200" cy="120" r="5" fill="#051C2C"/>
+      <circle cx="300" cy="150" r="5" fill="#051C2C"/>
+      <circle cx="400" cy="80" r="5" fill="#E5B342"/>
+      <!-- presenter on right -->
+      <g transform="translate(540, 80)">
+        <ellipse cx="80" cy="80" rx="48" ry="54" fill="#5B3A2A"/>
+        <path d="M 32 75 Q 32 30 80 25 Q 128 30 128 75 Q 120 55 80 53 Q 40 55 32 75" fill="#0F0A06"/>
+        <!-- features -->
+        <ellipse cx="62" cy="82" rx="4" ry="3" fill="#0F0A06"/>
+        <ellipse cx="98" cy="82" rx="4" ry="3" fill="#0F0A06"/>
+        <path d="M 70 110 Q 80 118 90 110" stroke="#2A1810" stroke-width="2" fill="none"/>
+        <!-- suit -->
+        <path d="M 0 370 L 0 200 Q 0 160 80 150 Q 160 160 160 200 L 160 370 Z" fill="#1A2B3A"/>
+        <!-- shirt -->
+        <path d="M 60 165 L 80 200 L 100 165 L 100 215 L 60 215 Z" fill="#FFFFFF"/>
+        <!-- arm gesturing left -->
+        <path d="M 0 220 Q -20 200 -50 210 L -55 240 Q -25 240 0 250" fill="#5B3A2A"/>
+      </g>
+    </symbol>
+
+    <!-- SERVICE 3: systems / structure abstract -->
+    <symbol id="scene-systems" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bg-s3" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#051C2C"/>
+          <stop offset="1" stop-color="#0A3554"/>
+        </linearGradient>
+      </defs>
+      <rect width="800" height="450" fill="url(#bg-s3)"/>
+      <!-- abstract network grid -->
+      <g stroke="#E5B342" stroke-width="1" opacity="0.4" fill="none">
+        <line x1="100" y1="80" x2="300" y2="180"/>
+        <line x1="300" y1="180" x2="500" y2="100"/>
+        <line x1="500" y1="100" x2="700" y2="220"/>
+        <line x1="300" y1="180" x2="400" y2="320"/>
+        <line x1="400" y1="320" x2="600" y2="380"/>
+        <line x1="500" y1="100" x2="400" y2="320"/>
+        <line x1="100" y1="80" x2="200" y2="280"/>
+        <line x1="200" y1="280" x2="400" y2="320"/>
+      </g>
+      <!-- nodes -->
+      <g>
+        <circle cx="100" cy="80" r="12" fill="#E5B342"/>
+        <circle cx="300" cy="180" r="18" fill="#F4F1EC"/>
+        <circle cx="500" cy="100" r="12" fill="#E5B342"/>
+        <circle cx="700" cy="220" r="14" fill="#F4F1EC"/>
+        <circle cx="400" cy="320" r="20" fill="#E5B342"/>
+        <circle cx="600" cy="380" r="12" fill="#F4F1EC"/>
+        <circle cx="200" cy="280" r="14" fill="#F4F1EC"/>
+      </g>
+      <!-- figure silhouette right -->
+      <g transform="translate(580, 240)" opacity="0.6">
+        <ellipse cx="80" cy="60" rx="38" ry="42" fill="#3A2519"/>
+        <path d="M 42 55 Q 42 18 80 14 Q 118 18 118 55" fill="#0F0A06"/>
+        <path d="M 0 210 L 0 150 Q 0 110 80 105 Q 160 110 160 150 L 160 210 Z" fill="#1A2B3A"/>
+      </g>
+    </symbol>
+
+    <!-- SERVICE 4: career readiness - students -->
+    <symbol id="scene-careers" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bg-s4" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#E3DDD0"/>
+          <stop offset="1" stop-color="#C9BFA8"/>
+        </linearGradient>
+      </defs>
+      <rect width="800" height="450" fill="url(#bg-s4)"/>
+      <circle cx="650" cy="100" r="180" fill="#E5B342" opacity="0.2"/>
+      <!-- two young figures with laptops -->
+      <g transform="translate(120, 160)">
+        <ellipse cx="60" cy="50" rx="36" ry="40" fill="#6F4A36"/>
+        <path d="M 24 45 Q 18 12 60 8 Q 102 12 96 45 Q 90 22 60 20 Q 30 22 24 45" fill="#1A1410"/>
+        <ellipse cx="48" cy="52" rx="3" ry="2.5" fill="#1A1410"/>
+        <ellipse cx="72" cy="52" rx="3" ry="2.5" fill="#1A1410"/>
+        <path d="M 52 72 Q 60 78 68 72" stroke="#2A1810" stroke-width="1.5" fill="none"/>
+        <!-- top -->
+        <path d="M 0 290 L 0 130 Q 0 100 60 95 Q 120 100 120 130 L 120 290 Z" fill="#FFFFFF"/>
+        <!-- laptop -->
+        <rect x="20" y="200" width="80" height="50" rx="3" fill="#051C2C"/>
+        <rect x="22" y="202" width="76" height="44" rx="2" fill="#0A3554"/>
+      </g>
+      <g transform="translate(380, 140)">
+        <ellipse cx="60" cy="50" rx="36" ry="40" fill="#5B3A2A"/>
+        <path d="M 24 48 Q 24 12 60 8 Q 96 12 96 48 Q 88 28 60 26 Q 32 28 24 48" fill="#0F0A06"/>
+        <ellipse cx="48" cy="52" rx="3" ry="2.5" fill="#0F0A06"/>
+        <ellipse cx="72" cy="52" rx="3" ry="2.5" fill="#0F0A06"/>
+        <path d="M 52 72 Q 60 80 68 72" stroke="#2A1810" stroke-width="1.5" fill="none"/>
+        <path d="M 0 310 L 0 130 Q 0 100 60 95 Q 120 100 120 130 L 120 310 Z" fill="#1A2B3A"/>
+        <rect x="20" y="200" width="80" height="50" rx="3" fill="#F4F1EC"/>
+        <rect x="22" y="202" width="76" height="44" rx="2" fill="#FFFFFF"/>
+      </g>
+    </symbol>
+
+    <!-- PROOF: workshop overhead -->
+    <symbol id="scene-proof" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bg-pr" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0A3554"/>
+          <stop offset="1" stop-color="#051C2C"/>
+        </linearGradient>
+      </defs>
+      <rect width="800" height="600" fill="url(#bg-pr)"/>
+      <!-- conference table from above -->
+      <ellipse cx="400" cy="320" rx="320" ry="160" fill="#D8C9B5" opacity="0.3"/>
+      <ellipse cx="400" cy="320" rx="280" ry="140" fill="#1A2B3A"/>
+      <!-- documents on table -->
+      <rect x="320" y="290" width="60" height="80" fill="#F4F1EC" transform="rotate(-8 350 330)"/>
+      <rect x="420" y="280" width="60" height="80" fill="#F4F1EC" transform="rotate(12 450 320)"/>
+      <!-- 6 figures around table -->
+      <g><!-- top -->
+        <ellipse cx="400" cy="140" rx="32" ry="36" fill="#5B3A2A"/>
+        <path d="M 368 135 Q 368 105 400 102 Q 432 105 432 135" fill="#1A1410"/>
+        <path d="M 360 250 Q 360 175 400 175 Q 440 175 440 250 Z" fill="#082A40"/>
+      </g>
+      <g transform="translate(200, 200)"><!-- top left -->
+        <ellipse cx="32" cy="36" rx="30" ry="34" fill="#7A5239"/>
+        <path d="M 4 32 Q 4 8 32 5 Q 60 8 60 32" fill="#0F0A06"/>
+        <path d="M -8 130 Q -8 60 32 58 Q 72 60 72 130 Z" fill="#1A2B3A"/>
+      </g>
+      <g transform="translate(560, 200)"><!-- top right -->
+        <ellipse cx="32" cy="36" rx="30" ry="34" fill="#6F4A36"/>
+        <path d="M 4 30 Q 0 8 32 5 Q 64 8 60 30 Q 55 18 32 16 Q 9 18 4 30" fill="#0F0A06"/>
+        <path d="M -8 130 Q -8 60 32 58 Q 72 60 72 130 Z" fill="#3A2A1F"/>
+      </g>
+      <g transform="translate(120, 380)"><!-- bottom left -->
+        <ellipse cx="32" cy="36" rx="30" ry="34" fill="#5B3A2A"/>
+        <path d="M 4 30 Q 4 8 32 5 Q 60 8 60 32" fill="#1A1410"/>
+        <path d="M -8 140 Q -8 60 32 58 Q 72 60 72 140 Z" fill="#082A40"/>
+      </g>
+      <g transform="translate(640, 380)"><!-- bottom right -->
+        <ellipse cx="32" cy="36" rx="30" ry="34" fill="#7A5239"/>
+        <path d="M 4 28 Q 0 8 32 5 Q 64 8 60 28 Q 55 16 32 14 Q 9 16 4 28" fill="#0F0A06"/>
+        <path d="M -8 140 Q -8 60 32 58 Q 72 60 72 140 Z" fill="#1A2B3A"/>
+      </g>
+      <g transform="translate(370, 460)"><!-- bottom -->
+        <ellipse cx="32" cy="36" rx="32" ry="36" fill="#6F4A36"/>
+        <path d="M 0 30 Q 0 5 32 3 Q 64 5 64 30" fill="#0F0A06"/>
+        <path d="M -10 140 Q -10 60 32 58 Q 74 60 74 140 Z" fill="#3A2A1F"/>
+      </g>
+      <!-- warm light -->
+      <circle cx="400" cy="100" r="120" fill="#E5B342" opacity="0.08"/>
+    </symbol>
+
+    <!-- TESTIMONIAL portraits - 4 distinct -->
+    <symbol id="q-adaeze" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bg-q1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#1F3A4D"/>
+          <stop offset="1" stop-color="#082A40"/>
+        </linearGradient>
+        <radialGradient id="face-q1" cx="0.5" cy="0.4" r="0.7">
+          <stop offset="0" stop-color="#7A5239"/>
+          <stop offset="0.6" stop-color="#5B3A2A"/>
+          <stop offset="1" stop-color="#3A2519"/>
+        </radialGradient>
+      </defs>
+      <rect width="400" height="500" fill="url(#bg-q1)"/>
+      <circle cx="320" cy="100" r="150" fill="#E5B342" opacity="0.1"/>
+      <!-- shoulders / blazer -->
+      <path d="M 60 500 L 60 380 Q 60 320 130 305 L 200 295 L 270 305 Q 340 320 340 380 L 340 500 Z" fill="#1A0F08"/>
+      <!-- shirt -->
+      <path d="M 170 305 L 200 350 L 230 305 L 230 370 L 170 370 Z" fill="#E5B342"/>
+      <!-- neck -->
+      <ellipse cx="200" cy="290" rx="32" ry="26" fill="#5B3A2A"/>
+      <!-- head -->
+      <ellipse cx="200" cy="210" rx="78" ry="94" fill="url(#face-q1)"/>
+      <!-- hair: textured natural style -->
+      <ellipse cx="200" cy="155" rx="95" ry="55" fill="#1A1410"/>
+      <path d="M 105 175 Q 105 215 130 240 L 270 240 Q 295 215 295 175" fill="#1A1410"/>
+      <!-- texture in hair -->
+      <circle cx="160" cy="135" r="8" fill="#0F0A06" opacity="0.5"/>
+      <circle cx="200" cy="120" r="8" fill="#0F0A06" opacity="0.5"/>
+      <circle cx="240" cy="135" r="8" fill="#0F0A06" opacity="0.5"/>
+      <circle cx="135" cy="160" r="7" fill="#0F0A06" opacity="0.5"/>
+      <circle cx="265" cy="160" r="7" fill="#0F0A06" opacity="0.5"/>
+      <!-- features -->
+      <ellipse cx="178" cy="218" rx="6" ry="4" fill="#1A1410"/>
+      <ellipse cx="222" cy="218" rx="6" ry="4" fill="#1A1410"/>
+      <path d="M 195 250 Q 200 255 205 250" stroke="#3A2519" stroke-width="1.5" fill="none"/>
+      <path d="M 182 275 Q 200 285 218 275" stroke="#7A2A2A" stroke-width="2.5" fill="none"/>
+      <ellipse cx="200" cy="190" rx="40" ry="20" fill="#8B6347" opacity="0.25"/>
+      <!-- earrings -->
+      <circle cx="125" cy="225" r="3" fill="#E5B342"/>
+      <circle cx="275" cy="225" r="3" fill="#E5B342"/>
+    </symbol>
+
+    <symbol id="q-ibrahim" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bg-q2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#082A40"/>
+          <stop offset="1" stop-color="#051C2C"/>
+        </linearGradient>
+        <radialGradient id="face-q2" cx="0.5" cy="0.4" r="0.7">
+          <stop offset="0" stop-color="#6F4A36"/>
+          <stop offset="0.6" stop-color="#4A2F22"/>
+          <stop offset="1" stop-color="#2A1810"/>
+        </radialGradient>
+      </defs>
+      <rect width="400" height="500" fill="url(#bg-q2)"/>
+      <circle cx="80" cy="100" r="150" fill="#E5B342" opacity="0.08"/>
+      <!-- suit -->
+      <path d="M 60 500 L 60 380 Q 60 320 130 305 L 200 295 L 270 305 Q 340 320 340 380 L 340 500 Z" fill="#1A2B3A"/>
+      <!-- shirt + tie -->
+      <path d="M 170 305 L 200 350 L 230 305 L 230 370 L 170 370 Z" fill="#FFFFFF"/>
+      <rect x="195" y="305" width="10" height="80" fill="#C9941F"/>
+      <ellipse cx="200" cy="290" rx="32" ry="26" fill="#4A2F22"/>
+      <ellipse cx="200" cy="210" rx="76" ry="90" fill="url(#face-q2)"/>
+      <!-- short cropped hair -->
+      <path d="M 130 175 Q 130 130 200 125 Q 270 130 270 175 Q 265 158 245 152 Q 215 148 200 148 Q 185 148 155 152 Q 135 158 130 175 Z" fill="#0F0A06"/>
+      <ellipse cx="178" cy="216" rx="5" ry="3.5" fill="#0F0A06"/>
+      <ellipse cx="222" cy="216" rx="5" ry="3.5" fill="#0F0A06"/>
+      <!-- beard -->
+      <path d="M 165 250 Q 200 280 235 250 Q 235 290 220 305 Q 200 312 180 305 Q 165 290 165 250 Z" fill="#1A0F08" opacity="0.6"/>
+      <path d="M 188 275 Q 200 282 212 275" stroke="#0F0A06" stroke-width="2" fill="none"/>
+      <ellipse cx="200" cy="190" rx="38" ry="18" fill="#8B6347" opacity="0.2"/>
+    </symbol>
+
+    <symbol id="q-funke" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bg-q3" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#3A1F1A"/>
+          <stop offset="1" stop-color="#1A0A08"/>
+        </linearGradient>
+        <radialGradient id="face-q3" cx="0.5" cy="0.4" r="0.7">
+          <stop offset="0" stop-color="#5B3A2A"/>
+          <stop offset="0.6" stop-color="#3A2519"/>
+          <stop offset="1" stop-color="#1F140E"/>
+        </radialGradient>
+      </defs>
+      <rect width="400" height="500" fill="url(#bg-q3)"/>
+      <circle cx="320" cy="100" r="150" fill="#E5B342" opacity="0.12"/>
+      <!-- traditional-influenced blazer in deep red/burgundy -->
+      <path d="M 50 500 L 50 380 Q 50 320 130 305 L 200 295 L 270 305 Q 350 320 350 380 L 350 500 Z" fill="#5A1818"/>
+      <!-- collar pattern accent -->
+      <path d="M 170 305 L 200 350 L 230 305 L 230 370 L 170 370 Z" fill="#E5B342"/>
+      <ellipse cx="200" cy="290" rx="32" ry="26" fill="#3A2519"/>
+      <ellipse cx="200" cy="205" rx="80" ry="92" fill="url(#face-q3)"/>
+      <!-- wrapped headtie (gele-inspired) -->
+      <path d="M 110 165 Q 100 100 200 80 Q 300 100 290 165 Q 285 130 200 125 Q 115 130 110 165 Z" fill="#5A1818"/>
+      <path d="M 115 145 Q 200 110 285 145 L 290 165 L 110 165 Z" fill="#7A2A2A"/>
+      <path d="M 130 125 Q 200 95 270 125" stroke="#E5B342" stroke-width="3" fill="none" opacity="0.7"/>
+      <!-- features -->
+      <ellipse cx="178" cy="213" rx="6" ry="4" fill="#1F140E"/>
+      <ellipse cx="222" cy="213" rx="6" ry="4" fill="#1F140E"/>
+      <path d="M 195 248 Q 200 253 205 248" stroke="#2A1810" stroke-width="1.5" fill="none"/>
+      <path d="M 180 273 Q 200 282 220 273" stroke="#7A2A2A" stroke-width="2.5" fill="none"/>
+      <ellipse cx="200" cy="188" rx="40" ry="20" fill="#7A5239" opacity="0.25"/>
+      <circle cx="120" cy="220" r="3" fill="#E5B342"/>
+      <circle cx="280" cy="220" r="3" fill="#E5B342"/>
+    </symbol>
+
+    <symbol id="q-chinedu" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bg-q4" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#1F3A4D"/>
+          <stop offset="1" stop-color="#0A3554"/>
+        </linearGradient>
+        <radialGradient id="face-q4" cx="0.5" cy="0.4" r="0.7">
+          <stop offset="0" stop-color="#7A5239"/>
+          <stop offset="0.6" stop-color="#5B3A2A"/>
+          <stop offset="1" stop-color="#3A2519"/>
+        </radialGradient>
+      </defs>
+      <rect width="400" height="500" fill="url(#bg-q4)"/>
+      <circle cx="100" cy="120" r="160" fill="#E5B342" opacity="0.1"/>
+      <!-- modern startup casual blazer over t-shirt -->
+      <path d="M 60 500 L 60 380 Q 60 320 130 305 L 200 295 L 270 305 Q 340 320 340 380 L 340 500 Z" fill="#2A2A2A"/>
+      <!-- t-shirt -->
+      <path d="M 160 305 L 200 360 L 240 305 L 240 380 L 160 380 Z" fill="#0A3554"/>
+      <ellipse cx="200" cy="290" rx="32" ry="26" fill="#5B3A2A"/>
+      <ellipse cx="200" cy="210" rx="76" ry="92" fill="url(#face-q4)"/>
+      <!-- short modern cut with line-up -->
+      <path d="M 130 175 Q 130 130 200 122 Q 270 130 270 175 Q 268 155 248 148 Q 218 144 200 144 Q 182 144 152 148 Q 132 155 130 175 Z" fill="#0F0A06"/>
+      <line x1="135" y1="175" x2="200" y2="170" stroke="#3A2519" stroke-width="1.5"/>
+      <ellipse cx="178" cy="218" rx="5" ry="3.5" fill="#0F0A06"/>
+      <ellipse cx="222" cy="218" rx="5" ry="3.5" fill="#0F0A06"/>
+      <!-- slight smile -->
+      <path d="M 175 272 Q 200 290 225 272" stroke="#2A1810" stroke-width="2.5" fill="none"/>
+      <!-- light stubble -->
+      <ellipse cx="200" cy="265" rx="35" ry="20" fill="#1A0F08" opacity="0.2"/>
+      <ellipse cx="200" cy="188" rx="40" ry="20" fill="#8B6347" opacity="0.25"/>
+    </symbol>
+
+    <!-- STUDENTS scene -->
+    <symbol id="scene-students" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bg-st" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#082A40"/>
+          <stop offset="1" stop-color="#051C2C"/>
+        </linearGradient>
+      </defs>
+      <rect width="400" height="500" fill="url(#bg-st)"/>
+      <circle cx="320" cy="100" r="180" fill="#E5B342" opacity="0.12"/>
+      <!-- one student figure, hopeful, with notebook -->
+      <g transform="translate(70, 80)">
+        <!-- body -->
+        <path d="M 0 420 L 0 280 Q 0 230 130 220 Q 260 230 260 280 L 260 420 Z" fill="#F4F1EC"/>
+        <!-- denim jacket -->
+        <path d="M -10 420 L -10 290 Q -10 250 50 245 L 80 240 L 80 420 Z" fill="#1A2B3A"/>
+        <path d="M 270 420 L 270 290 Q 270 250 210 245 L 180 240 L 180 420 Z" fill="#1A2B3A"/>
+        <!-- shoulders / collar -->
+        <path d="M 100 245 L 130 285 L 160 245 L 160 295 L 100 295 Z" fill="#FFFFFF"/>
+        <ellipse cx="130" cy="225" rx="28" ry="24" fill="#5B3A2A"/>
+        <!-- head -->
+        <ellipse cx="130" cy="148" rx="68" ry="80" fill="#5B3A2A"/>
+        <!-- braided hair pulled back -->
+        <path d="M 64 120 Q 64 75 130 70 Q 196 75 196 120 Q 190 100 130 95 Q 70 100 64 120 Z" fill="#1A1410"/>
+        <!-- braid lines -->
+        <line x1="80" y1="100" x2="100" y2="135" stroke="#0F0A06" stroke-width="2"/>
+        <line x1="105" y1="92" x2="115" y2="135" stroke="#0F0A06" stroke-width="2"/>
+        <line x1="130" y1="90" x2="130" y2="135" stroke="#0F0A06" stroke-width="2"/>
+        <line x1="155" y1="92" x2="145" y2="135" stroke="#0F0A06" stroke-width="2"/>
+        <line x1="180" y1="100" x2="160" y2="135" stroke="#0F0A06" stroke-width="2"/>
+        <!-- features -->
+        <ellipse cx="112" cy="155" rx="5" ry="3.5" fill="#1A1410"/>
+        <ellipse cx="148" cy="155" rx="5" ry="3.5" fill="#1A1410"/>
+        <path d="M 117 188 Q 130 198 143 188" stroke="#2A1810" stroke-width="2" fill="none"/>
+        <!-- notebook in hand -->
+        <rect x="80" y="340" width="100" height="70" fill="#1A2B3A" transform="rotate(-5 130 375)"/>
+        <rect x="85" y="345" width="90" height="60" fill="#F4F1EC" transform="rotate(-5 130 375)"/>
+      </g>
+    </symbol>
+
+    <!-- INSIGHT thumbnails -->
+    <symbol id="ins-article" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bg-i1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#F4F1EC"/>
+          <stop offset="1" stop-color="#D8D2C7"/>
+        </linearGradient>
+      </defs>
+      <rect width="400" height="300" fill="url(#bg-i1)"/>
+      <!-- abstract: revolving door symbolizing turnover -->
+      <circle cx="200" cy="150" r="100" fill="none" stroke="#051C2C" stroke-width="1.5" opacity="0.6"/>
+      <line x1="200" y1="50" x2="200" y2="250" stroke="#051C2C" stroke-width="1.5" opacity="0.6"/>
+      <line x1="100" y1="150" x2="300" y2="150" stroke="#051C2C" stroke-width="1.5" opacity="0.6"/>
+      <line x1="130" y1="80" x2="270" y2="220" stroke="#E5B342" stroke-width="2"/>
+      <circle cx="200" cy="150" r="14" fill="#E5B342"/>
+      <circle cx="270" cy="220" r="8" fill="#051C2C"/>
+      <circle cx="130" cy="80" r="8" fill="#051C2C"/>
+      <text x="200" y="280" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="500" fill="#051C2C" letter-spacing="2">RETENTION</text>
+    </symbol>
+
+    <symbol id="ins-interview" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bg-i2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#051C2C"/>
+          <stop offset="1" stop-color="#0A3554"/>
+        </linearGradient>
+      </defs>
+      <rect width="400" height="300" fill="url(#bg-i2)"/>
+      <!-- two facing silhouettes -->
+      <g transform="translate(80, 100)">
+        <ellipse cx="40" cy="40" rx="32" ry="36" fill="#5B3A2A"/>
+        <path d="M 8 35 Q 8 8 40 5 Q 72 8 72 35" fill="#1A1410"/>
+        <path d="M 0 200 L 0 120 Q 0 90 40 88 Q 80 90 80 120 L 80 200 Z" fill="#1A2B3A"/>
+      </g>
+      <g transform="translate(240, 100)">
+        <ellipse cx="40" cy="40" rx="32" ry="36" fill="#7A5239"/>
+        <ellipse cx="40" cy="20" rx="44" ry="28" fill="#1A1410"/>
+        <path d="M 0 200 L 0 120 Q 0 90 40 88 Q 80 90 80 120 L 80 200 Z" fill="#5A1818"/>
+      </g>
+      <!-- conversation arc -->
+      <path d="M 160 130 Q 200 100 240 130" stroke="#E5B342" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+    </symbol>
+
+    <symbol id="ins-framework" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bg-i3" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#E3DDD0"/>
+          <stop offset="1" stop-color="#C9BFA8"/>
+        </linearGradient>
+      </defs>
+      <rect width="400" height="300" fill="url(#bg-i3)"/>
+      <!-- 4 quadrants framework -->
+      <g stroke="#051C2C" stroke-width="2" fill="none">
+        <rect x="80" y="60" width="240" height="180"/>
+        <line x1="200" y1="60" x2="200" y2="240"/>
+        <line x1="80" y1="150" x2="320" y2="150"/>
+      </g>
+      <circle cx="140" cy="105" r="12" fill="#E5B342"/>
+      <circle cx="260" cy="105" r="12" fill="#051C2C"/>
+      <circle cx="140" cy="195" r="12" fill="#051C2C"/>
+      <circle cx="260" cy="195" r="12" fill="#E5B342"/>
+      <text x="200" y="276" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="500" fill="#051C2C" letter-spacing="2">FRAMEWORK</text>
+    </symbol>
+
+    <!-- ========================================================
+         CASE BEFORE/AFTER VISUALS
+         ======================================================== -->
+
+    <!-- CASE A BEFORE: chaotic Slack / meetings -->
+    <symbol id="case-a-before" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
+      <!-- chaotic message bubbles overlapping -->
+      <g opacity="0.9">
+        <rect x="40" y="30" width="120" height="32" rx="16" fill="#5a2a2a"/>
+        <circle cx="58" cy="46" r="8" fill="#C42E2E"/>
+        <rect x="76" y="40" width="70" height="3" rx="1.5" fill="#fff" opacity="0.5"/>
+        <rect x="76" y="48" width="50" height="3" rx="1.5" fill="#fff" opacity="0.3"/>
+      </g>
+      <g opacity="0.9">
+        <rect x="180" y="60" width="140" height="32" rx="16" fill="#5a2a2a"/>
+        <circle cx="198" cy="76" r="8" fill="#C42E2E"/>
+        <rect x="216" y="70" width="80" height="3" rx="1.5" fill="#fff" opacity="0.5"/>
+        <rect x="216" y="78" width="60" height="3" rx="1.5" fill="#fff" opacity="0.3"/>
+      </g>
+      <g opacity="0.9">
+        <rect x="60" y="100" width="100" height="32" rx="16" fill="#5a2a2a"/>
+        <circle cx="78" cy="116" r="8" fill="#C42E2E"/>
+        <rect x="96" y="110" width="55" height="3" rx="1.5" fill="#fff" opacity="0.5"/>
+        <rect x="96" y="118" width="40" height="3" rx="1.5" fill="#fff" opacity="0.3"/>
+      </g>
+      <g opacity="0.9">
+        <rect x="200" y="130" width="130" height="32" rx="16" fill="#5a2a2a"/>
+        <circle cx="218" cy="146" r="8" fill="#C42E2E"/>
+        <rect x="236" y="140" width="75" height="3" rx="1.5" fill="#fff" opacity="0.5"/>
+        <rect x="236" y="148" width="55" height="3" rx="1.5" fill="#fff" opacity="0.3"/>
+      </g>
+      <g opacity="0.7">
+        <rect x="40" y="170" width="110" height="32" rx="16" fill="#5a2a2a"/>
+        <circle cx="58" cy="186" r="8" fill="#C42E2E"/>
+        <rect x="76" y="180" width="65" height="3" rx="1.5" fill="#fff" opacity="0.5"/>
+        <rect x="76" y="188" width="45" height="3" rx="1.5" fill="#fff" opacity="0.3"/>
+      </g>
+      <g opacity="0.7">
+        <rect x="170" y="200" width="125" height="32" rx="16" fill="#5a2a2a"/>
+        <circle cx="188" cy="216" r="8" fill="#C42E2E"/>
+        <rect x="206" y="210" width="70" height="3" rx="1.5" fill="#fff" opacity="0.5"/>
+        <rect x="206" y="218" width="50" height="3" rx="1.5" fill="#fff" opacity="0.3"/>
+      </g>
+      <!-- alert/clock -->
+      <g transform="translate(310, 240)">
+        <circle cx="0" cy="0" r="26" fill="#C42E2E"/>
+        <text x="0" y="6" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="22" font-weight="700" fill="#fff">!</text>
+      </g>
+      <text x="200" y="276" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="600" fill="#fff" letter-spacing="2" opacity="0.6">60-HOUR WEEKS · MEETING CHAOS</text>
+    </symbol>
+
+    <!-- CASE A AFTER: structured dashboard -->
+    <symbol id="case-a-after" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
+      <!-- clean dashboard frame -->
+      <rect x="40" y="40" width="320" height="200" rx="4" fill="#0a3554" stroke="#E5B342" stroke-width="1"/>
+      <!-- header bar -->
+      <rect x="40" y="40" width="320" height="32" fill="#082A40"/>
+      <circle cx="58" cy="56" r="4" fill="#E5B342"/>
+      <circle cx="72" cy="56" r="4" fill="#fff" opacity="0.4"/>
+      <circle cx="86" cy="56" r="4" fill="#fff" opacity="0.4"/>
+      <rect x="280" y="50" width="60" height="12" rx="6" fill="#E5B342"/>
+      <!-- kanban columns -->
+      <g transform="translate(60, 90)">
+        <text x="0" y="0" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#E5B342" letter-spacing="1.5">TO DO</text>
+        <rect x="0" y="10" width="80" height="20" rx="2" fill="#fff" opacity="0.95"/>
+        <rect x="6" y="16" width="50" height="2" fill="#051C2C"/>
+        <rect x="6" y="22" width="35" height="2" fill="#051C2C" opacity="0.5"/>
+        <rect x="0" y="38" width="80" height="20" rx="2" fill="#fff" opacity="0.95"/>
+        <rect x="6" y="44" width="55" height="2" fill="#051C2C"/>
+        <rect x="6" y="50" width="40" height="2" fill="#051C2C" opacity="0.5"/>
+        <rect x="0" y="66" width="80" height="20" rx="2" fill="#fff" opacity="0.95"/>
+        <rect x="6" y="72" width="45" height="2" fill="#051C2C"/>
+        <rect x="6" y="78" width="30" height="2" fill="#051C2C" opacity="0.5"/>
+      </g>
+      <g transform="translate(160, 90)">
+        <text x="0" y="0" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#E5B342" letter-spacing="1.5">IN PROGRESS</text>
+        <rect x="0" y="10" width="80" height="20" rx="2" fill="#fff" opacity="0.95"/>
+        <rect x="6" y="16" width="60" height="2" fill="#051C2C"/>
+        <rect x="6" y="22" width="40" height="2" fill="#051C2C" opacity="0.5"/>
+        <rect x="0" y="38" width="80" height="20" rx="2" fill="#fff" opacity="0.95"/>
+        <rect x="6" y="44" width="50" height="2" fill="#051C2C"/>
+        <rect x="6" y="50" width="35" height="2" fill="#051C2C" opacity="0.5"/>
+      </g>
+      <g transform="translate(260, 90)">
+        <text x="0" y="0" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#E5B342" letter-spacing="1.5">DONE</text>
+        <rect x="0" y="10" width="80" height="20" rx="2" fill="#E5B342"/>
+        <rect x="6" y="16" width="55" height="2" fill="#051C2C"/>
+        <rect x="6" y="22" width="35" height="2" fill="#051C2C" opacity="0.6"/>
+        <rect x="0" y="38" width="80" height="20" rx="2" fill="#E5B342"/>
+        <rect x="6" y="44" width="50" height="2" fill="#051C2C"/>
+        <rect x="6" y="50" width="40" height="2" fill="#051C2C" opacity="0.6"/>
+        <rect x="0" y="66" width="80" height="20" rx="2" fill="#E5B342"/>
+        <rect x="6" y="72" width="45" height="2" fill="#051C2C"/>
+        <rect x="6" y="78" width="30" height="2" fill="#051C2C" opacity="0.6"/>
+      </g>
+      <!-- async note -->
+      <rect x="60" y="210" width="280" height="20" rx="10" fill="#E5B342" opacity="0.15"/>
+      <text x="200" y="223" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#E5B342" letter-spacing="1.5">ASYNC · NO MEETINGS BEFORE 11AM</text>
+      <text x="200" y="276" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="600" fill="#fff" letter-spacing="2" opacity="0.7">ONE DASHBOARD · CLEAR OWNERSHIP</text>
+    </symbol>
+
+    <!-- CASE B BEFORE: managers stuck, confused career -->
+    <symbol id="case-b-before" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
+      <!-- 4 manager silhouettes scattered, question marks -->
+      <g transform="translate(50, 80)">
+        <ellipse cx="30" cy="30" rx="22" ry="24" fill="#5B3A2A"/>
+        <path d="M 8 28 Q 8 6 30 4 Q 52 6 52 28" fill="#1A1410"/>
+        <path d="M -8 130 L -8 80 Q -8 60 30 58 Q 68 60 68 80 L 68 130 Z" fill="#2a1f1f"/>
+        <!-- question mark above -->
+        <circle cx="80" cy="0" r="14" fill="#C42E2E"/>
+        <text x="80" y="6" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="18" font-weight="700" fill="#fff">?</text>
+      </g>
+      <g transform="translate(180, 60)">
+        <ellipse cx="30" cy="30" rx="22" ry="24" fill="#6F4A36"/>
+        <path d="M 8 26 Q 4 6 30 4 Q 56 6 52 26" fill="#0F0A06"/>
+        <path d="M -8 150 L -8 80 Q -8 60 30 58 Q 68 60 68 80 L 68 150 Z" fill="#2a1f1f"/>
+        <circle cx="80" cy="-12" r="14" fill="#C42E2E"/>
+        <text x="80" y="-6" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="18" font-weight="700" fill="#fff">?</text>
+      </g>
+      <g transform="translate(310, 90)">
+        <ellipse cx="30" cy="30" rx="22" ry="24" fill="#7A5239"/>
+        <path d="M 8 28 Q 8 6 30 4 Q 52 6 52 28" fill="#1A1410"/>
+        <path d="M -8 120 L -8 80 Q -8 60 30 58 Q 68 60 68 80 L 68 120 Z" fill="#2a1f1f"/>
+        <circle cx="50" cy="-10" r="14" fill="#C42E2E"/>
+        <text x="50" y="-4" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="18" font-weight="700" fill="#fff">?</text>
+      </g>
+      <!-- exit door -->
+      <g transform="translate(330, 240)">
+        <rect x="-20" y="-30" width="40" height="50" fill="#C42E2E" opacity="0.7"/>
+        <text x="0" y="6" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="700" fill="#fff" letter-spacing="1">EXIT</text>
+      </g>
+      <text x="180" y="276" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="600" fill="#fff" letter-spacing="2" opacity="0.6">STUCK · UNCLEAR · LEAVING</text>
+    </symbol>
+
+    <!-- CASE B AFTER: career ladder -->
+    <symbol id="case-b-after" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
+      <!-- progression ladder -->
+      <g>
+        <!-- tier 1 -->
+        <rect x="40" y="200" width="80" height="48" rx="2" fill="#082A40" stroke="#E5B342" stroke-width="1"/>
+        <text x="80" y="222" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="600" fill="#E5B342" letter-spacing="1">L1</text>
+        <text x="80" y="238" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#fff" opacity="0.7">Associate</text>
+        <!-- skills under tier 1 -->
+        <rect x="44" y="252" width="22" height="3" rx="1" fill="#E5B342" opacity="0.6"/>
+        <rect x="70" y="252" width="22" height="3" rx="1" fill="#E5B342" opacity="0.6"/>
+        <rect x="96" y="252" width="20" height="3" rx="1" fill="#E5B342" opacity="0.6"/>
+
+        <!-- arrow -->
+        <line x1="125" y1="220" x2="155" y2="180" stroke="#E5B342" stroke-width="1.5"/>
+        <polygon points="155,180 148,182 150,176" fill="#E5B342"/>
+
+        <!-- tier 2 -->
+        <rect x="160" y="155" width="80" height="48" rx="2" fill="#082A40" stroke="#E5B342" stroke-width="1.5"/>
+        <text x="200" y="177" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="600" fill="#E5B342" letter-spacing="1">L2</text>
+        <text x="200" y="193" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#fff" opacity="0.7">Senior</text>
+        <rect x="164" y="207" width="22" height="3" rx="1" fill="#E5B342" opacity="0.8"/>
+        <rect x="190" y="207" width="22" height="3" rx="1" fill="#E5B342" opacity="0.8"/>
+        <rect x="216" y="207" width="20" height="3" rx="1" fill="#E5B342" opacity="0.8"/>
+
+        <line x1="245" y1="175" x2="275" y2="135" stroke="#E5B342" stroke-width="1.5"/>
+        <polygon points="275,135 268,137 270,131" fill="#E5B342"/>
+
+        <!-- tier 3 -->
+        <rect x="280" y="110" width="80" height="48" rx="2" fill="#E5B342"/>
+        <text x="320" y="132" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="700" fill="#051C2C" letter-spacing="1">L3</text>
+        <text x="320" y="148" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#051C2C" font-weight="600">Manager</text>
+        <rect x="284" y="162" width="22" height="3" rx="1" fill="#051C2C"/>
+        <rect x="310" y="162" width="22" height="3" rx="1" fill="#051C2C"/>
+        <rect x="336" y="162" width="20" height="3" rx="1" fill="#051C2C"/>
+      </g>
+      <!-- header -->
+      <text x="200" y="55" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="14" font-weight="600" fill="#fff" letter-spacing="-0.5">Career Progression Framework</text>
+      <line x1="120" y1="68" x2="280" y2="68" stroke="#E5B342" stroke-width="1" opacity="0.4"/>
+      <text x="200" y="84" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#fff" opacity="0.7" letter-spacing="1">EVERY EMPLOYEE KNOWS WHAT'S NEXT</text>
+      <text x="200" y="285" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="600" fill="#fff" letter-spacing="2" opacity="0.7">TRANSPARENT PATH · OBJECTIVE MATRIX</text>
+    </symbol>
+
+    <!-- CASE C BEFORE: new hire lost -->
+    <symbol id="case-c-before" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
+      <!-- one figure isolated, scattered papers -->
+      <g transform="translate(170, 100)">
+        <ellipse cx="30" cy="30" rx="28" ry="32" fill="#5B3A2A"/>
+        <path d="M 4 32 Q 4 6 30 4 Q 56 6 56 32" fill="#1A1410"/>
+        <ellipse cx="20" cy="32" rx="3" ry="2" fill="#1A1410"/>
+        <ellipse cx="40" cy="32" rx="3" ry="2" fill="#1A1410"/>
+        <path d="M 22 50 Q 30 48 38 50" stroke="#2A1810" stroke-width="2" fill="none"/>
+        <path d="M -8 180 L -8 90 Q -8 70 30 68 Q 68 70 68 90 L 68 180 Z" fill="#2a1f1f"/>
+      </g>
+      <!-- scattered documents around -->
+      <rect x="50" y="60" width="50" height="60" fill="#fff" opacity="0.7" transform="rotate(-12 75 90)"/>
+      <rect x="50" y="60" width="50" height="60" fill="none" stroke="#5a2a2a" transform="rotate(-12 75 90)"/>
+      <rect x="300" y="80" width="50" height="60" fill="#fff" opacity="0.5" transform="rotate(15 325 110)"/>
+      <rect x="300" y="80" width="50" height="60" fill="none" stroke="#5a2a2a" transform="rotate(15 325 110)"/>
+      <rect x="70" y="200" width="50" height="60" fill="#fff" opacity="0.6" transform="rotate(8 95 230)"/>
+      <rect x="70" y="200" width="50" height="60" fill="none" stroke="#5a2a2a" transform="rotate(8 95 230)"/>
+      <rect x="290" y="220" width="50" height="60" fill="#fff" opacity="0.4" transform="rotate(-20 315 250)"/>
+      <rect x="290" y="220" width="50" height="60" fill="none" stroke="#5a2a2a" transform="rotate(-20 315 250)"/>
+      <!-- clock showing 6 months -->
+      <g transform="translate(200, 50)">
+        <circle cx="0" cy="0" r="18" fill="none" stroke="#C42E2E" stroke-width="2"/>
+        <line x1="0" y1="0" x2="0" y2="-12" stroke="#C42E2E" stroke-width="2" stroke-linecap="round"/>
+        <line x1="0" y1="0" x2="10" y2="4" stroke="#C42E2E" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <text x="200" y="285" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="600" fill="#fff" letter-spacing="2" opacity="0.6">6 MONTHS TO PRODUCTIVITY · LOST</text>
+    </symbol>
+
+    <!-- CASE C AFTER: 30-60-90 playbook -->
+    <symbol id="case-c-after" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
+      <!-- timeline with three phases -->
+      <line x1="50" y1="150" x2="350" y2="150" stroke="#E5B342" stroke-width="2"/>
+      <!-- 30 day -->
+      <g>
+        <circle cx="100" cy="150" r="14" fill="#E5B342"/>
+        <text x="100" y="155" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="700" fill="#051C2C">30</text>
+        <text x="100" y="180" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#fff" letter-spacing="1">LEARN</text>
+        <rect x="76" y="100" width="48" height="34" rx="2" fill="#082A40" stroke="#E5B342" stroke-width="1"/>
+        <rect x="82" y="106" width="36" height="2" fill="#fff" opacity="0.8"/>
+        <rect x="82" y="112" width="28" height="2" fill="#fff" opacity="0.5"/>
+        <rect x="82" y="118" width="32" height="2" fill="#E5B342"/>
+        <rect x="82" y="124" width="24" height="2" fill="#fff" opacity="0.5"/>
+        <rect x="82" y="130" width="30" height="2" fill="#fff" opacity="0.5"/>
+      </g>
+      <!-- 60 day -->
+      <g>
+        <circle cx="200" cy="150" r="14" fill="#E5B342"/>
+        <text x="200" y="155" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="700" fill="#051C2C">60</text>
+        <text x="200" y="180" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#fff" letter-spacing="1">APPLY</text>
+        <rect x="176" y="100" width="48" height="34" rx="2" fill="#082A40" stroke="#E5B342" stroke-width="1"/>
+        <rect x="182" y="106" width="36" height="2" fill="#E5B342"/>
+        <rect x="182" y="112" width="28" height="2" fill="#E5B342"/>
+        <rect x="182" y="118" width="32" height="2" fill="#fff" opacity="0.8"/>
+        <rect x="182" y="124" width="24" height="2" fill="#fff" opacity="0.5"/>
+        <rect x="182" y="130" width="30" height="2" fill="#fff" opacity="0.5"/>
+      </g>
+      <!-- 90 day -->
+      <g>
+        <circle cx="300" cy="150" r="14" fill="#E5B342"/>
+        <text x="300" y="155" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="700" fill="#051C2C">90</text>
+        <text x="300" y="180" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#fff" letter-spacing="1">OWN</text>
+        <rect x="276" y="100" width="48" height="34" rx="2" fill="#082A40" stroke="#E5B342" stroke-width="1"/>
+        <rect x="282" y="106" width="36" height="2" fill="#E5B342"/>
+        <rect x="282" y="112" width="28" height="2" fill="#E5B342"/>
+        <rect x="282" y="118" width="32" height="2" fill="#E5B342"/>
+        <rect x="282" y="124" width="24" height="2" fill="#E5B342"/>
+        <rect x="282" y="130" width="30" height="2" fill="#fff" opacity="0.8"/>
+      </g>
+      <!-- buddy icons at bottom -->
+      <g transform="translate(120, 210)">
+        <circle cx="0" cy="0" r="10" fill="#5B3A2A"/>
+        <path d="M -7 -2 Q -7 -10 0 -11 Q 7 -10 7 -2" fill="#1A1410"/>
+        <circle cx="20" cy="0" r="10" fill="#7A5239"/>
+        <path d="M 13 -2 Q 13 -10 20 -11 Q 27 -10 27 -2" fill="#0F0A06"/>
+        <text x="48" y="4" font-family="Inter, sans-serif" font-size="10" fill="#fff" opacity="0.8">+ Buddy System</text>
+      </g>
+      <g transform="translate(240, 210)">
+        <rect x="0" y="-8" width="16" height="16" rx="2" fill="#E5B342"/>
+        <line x1="3" y1="-3" x2="13" y2="-3" stroke="#051C2C" stroke-width="1.5"/>
+        <line x1="3" y1="0" x2="13" y2="0" stroke="#051C2C" stroke-width="1.5"/>
+        <line x1="3" y1="3" x2="10" y2="3" stroke="#051C2C" stroke-width="1.5"/>
+        <text x="24" y="4" font-family="Inter, sans-serif" font-size="10" fill="#fff" opacity="0.8">+ Training Modules</text>
+      </g>
+      <!-- header -->
+      <text x="200" y="50" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="14" font-weight="600" fill="#fff" letter-spacing="-0.5">30-60-90 Onboarding Playbook</text>
+      <line x1="120" y1="63" x2="280" y2="63" stroke="#E5B342" stroke-width="1" opacity="0.4"/>
+      <text x="200" y="285" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="600" fill="#fff" letter-spacing="2" opacity="0.7">PRODUCTIVE IN 6 WEEKS · NOT 6 MONTHS</text>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- =========================================================
+     NAV
+     ========================================================= -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="logo"><span class="logo-bar"></span>Corporate Sense</a>
+    <ul class="nav-links">
+      <li><a href="#top">Home</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li class="nav-dropdown">
+        <a href="#services" class="nav-dd-trigger">Our Services <span class="dd-arr">▾</span></a>
+        <div class="nav-dd-menu">
+          <a href="#svc-sprint">
+            <span class="dd-item-title">Healthy Startup Culture Sprint</span>
+            <span class="dd-item-desc">Short-term relief for teams in high friction</span>
+          </a>
+          <a href="#svc-leadership">
+            <span class="dd-item-title">Leadership &amp; Manager Training</span>
+            <span class="dd-item-desc">Turn technical talent into real people managers</span>
+          </a>
+          <a href="#svc-systems">
+            <span class="dd-item-title">Workplace Systems Design</span>
+            <span class="dd-item-desc">Role clarity, onboarding, accountability systems</span>
+          </a>
+          <a href="#svc-recruitment">
+            <span class="dd-item-title">Recruitment &amp; Onboarding</span>
+            <span class="dd-item-desc">End-to-end hiring and structured 30-60-90 day onboarding</span>
+          </a>
+          <a href="#diagnostic" class="dd-featured">
+            <span class="dd-item-title">Culture &amp; Organisational Diagnostics</span>
+            <span class="dd-item-desc">Featured engagement. Start here.</span>
+          </a>
+        </div>
+      </li>
+      <li><a href="#insights">Blog</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Book a Diagnostic <span class="arr">→</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#top" class="m-link"><span>Home</span><span class="n">01</span></a></li>
+    <li><a href="#about" class="m-link"><span>About Us</span><span class="n">02</span></a></li>
+    <li class="m-group">
+      <div class="m-group-title">Our Services <span class="n">03</span></div>
+      <ul class="m-sublist">
+        <li><a href="#svc-sprint" class="m-link m-sub">Healthy Startup Culture Sprint</a></li>
+        <li><a href="#svc-leadership" class="m-link m-sub">Leadership &amp; Manager Training</a></li>
+        <li><a href="#svc-systems" class="m-link m-sub">Workplace Systems Design</a></li>
+        <li><a href="#svc-recruitment" class="m-link m-sub">Recruitment &amp; Onboarding</a></li>
+        <li><a href="#diagnostic" class="m-link m-sub">Culture &amp; Organisational Diagnostics</a></li>
+      </ul>
+    </li>
+    <li><a href="#insights" class="m-link"><span>Blog</span><span class="n">04</span></a></li>
+    <li><a href="#contact" class="m-link"><span>Contact Us</span><span class="n">05</span></a></li>
+  </ul>
+  <a href="#contact" class="mobile-cta m-link">Book a Diagnostic <span>→</span></a>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap" style="display:flex;flex-direction:column;flex:1;">
+    <div class="hero-grid">
+      <div>
+        <div class="reveal"><span class="label on-dark">People · Culture · Structure</span></div>
+        <h1 class="hero-headline reveal delay-1">We build the systems behind <span class="accent">high-performing</span> workplaces.</h1>
+        <p class="hero-sub reveal delay-2">Most workplace problems aren't people problems. They're system problems. Corporate Sense diagnoses what's really driving disengagement, turnover, and burnout across startups, SMEs, and growing Nigerian organisations, then designs the structures that fix it.</p>
+        <div class="hero-ctas reveal delay-3">
+          <a href="#contact" class="btn btn-primary">Book a Diagnostic <span class="arr">→</span></a>
+          <a href="#approach" class="btn btn-ghost">See real examples <span class="arr">→</span></a>
+        </div>
+      </div>
+      <div class="hero-visual reveal delay-2">
+        <div class="hero-img-main">
+          <img src="https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Senior consultant" loading="eager" />
+        </div>
+        <div class="hero-img-stat">
+          <div class="big">Most.</div>
+          <div class="lbl">Of growing teams have a structure problem, not a people problem</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-strip reveal delay-4">
+      <span class="hero-strip-text">Trusted by growing organisations across</span>
+      <span class="hero-stat-inline">Independent. Diagnostic-first. Built for growing Nigerian organisations.</span>
+      <div class="hero-strip-locs"><span>Lagos</span><span>Abuja</span><span>Port Harcourt</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT US -->
+<section class="about-us" id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <span class="num">01 / WHO WE ARE</span>
+        <span class="label">About Us</span>
+      </div>
+      <div class="reveal delay-1">
+        <h2>A consultancy for the way Nigerian organisations actually grow.</h2>
+      </div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-lead reveal">
+        <p class="about-lead-text">Corporate Sense is a workplace transformation consultancy built for startups, SMEs, and growing organisations in Nigeria. We help leadership teams build the cultures, systems, and managers strong enough to scale with the business.</p>
+        <p class="about-lead-text">Most consultancies sell programmes. We sell clarity. Every engagement begins with a Diagnostic, because the right intervention depends entirely on what's actually broken, and almost nothing breaks for the reason it appears to.</p>
+      </div>
+      <div class="about-pillars reveal delay-1">
+        <div class="about-pillar">
+          <span class="about-pillar-num">01</span>
+          <h4>Why we exist</h4>
+          <p>Nigerian organisations are growing fast, often faster than the systems holding them together. Too many lose their best people to problems that were structural all along.</p>
+        </div>
+        <div class="about-pillar">
+          <span class="about-pillar-num">02</span>
+          <h4>Who we work with</h4>
+          <p>Founders, leadership teams, and people functions inside organisations between fifteen and two hundred people. The stage where structure stops being optional.</p>
+        </div>
+        <div class="about-pillar">
+          <span class="about-pillar-num">03</span>
+          <h4>What we bring</h4>
+          <p>Diagnostic rigour, structural thinking, and frameworks designed for your sector and stage. No off-the-shelf playbooks, no copy-pasted policies.</p>
+        </div>
+        <div class="about-pillar">
+          <span class="about-pillar-num">04</span>
+          <h4>Where we sit</h4>
+          <p>Independent, founder-led, based in Nigeria. Close enough to understand the context, structured enough to deliver against international standards.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-cta reveal delay-2">
+      <a href="#services" class="btn btn-dark">Explore Our Services <span class="arr">→</span></a>
+      <a href="#contact" class="btn btn-text">Book a Diagnostic <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="featured" id="diagnostic">
+  <div class="wrap">
+    <div class="featured-top">
+      <div class="reveal">
+        <span class="num" style="color:rgba(255,255,255,0.6);">02 / WHERE WE START</span>
+        <span class="label on-dark" style="margin:16px 0 24px;display:inline-flex;">Featured Engagement</span>
+        <h2>Culture &amp; Organisational Diagnostics.</h2>
+      </div>
+      <div class="featured-top-right reveal delay-1">
+        <p>A structured three to four-week assessment of workplace culture, leadership systems, communication flow, and team dynamics. We surface what's actually causing your people problems: the structural drivers most consultants never reach, because they go straight to symptoms.</p>
+      </div>
+    </div>
+    <div class="featured-grid">
+      <div class="featured-img reveal">
+        <img src="https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Leadership in strategic discussion" loading="lazy" />
+      </div>
+      <div class="featured-body reveal delay-1">
+        <h4>What it is</h4>
+        <p>Anonymised conversations across levels. Audits of your current systems and operating cadence. Pattern analysis across what we hear, see, and observe. Delivered as a confidential leadership briefing, not a sanitised slide deck.</p>
+        <h4>What you walk away with</h4>
+        <ul class="delivers">
+          <li><span class="ck">→</span><span>A precise map of the structural drivers behind your people problems</span></li>
+          <li><span class="ck">→</span><span>Prioritised interventions, sequenced for your stage and capacity</span></li>
+          <li><span class="ck">→</span><span>A 90-day action plan, implementable with or without ongoing support</span></li>
+          <li><span class="ck">→</span><span>A confidential leadership readout and team-level recommendations</span></li>
+        </ul>
+        <div class="featured-cta">
+          <a href="#contact" class="btn btn-primary">Start with a Diagnostic <span class="arr">→</span></a>
+          <a href="#services" class="btn btn-ghost">See full scope <span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <span class="num">03 / WHAT WE DELIVER</span>
+        <span class="label">Our Services</span>
+      </div>
+      <div class="reveal delay-1"><h2>Four offerings, one diagnostic-first approach.</h2></div>
+    </div>
+    <div class="services-grid">
+      <article class="svc reveal" id="svc-sprint">
+        <div class="svc-img">
+          <span class="svc-num">01</span><span class="svc-label">Sprint</span>
+          <img src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Team in alignment workshop" loading="lazy" />
+        </div>
+        <h3>Healthy Startup<br/>Culture Sprint</h3>
+        <div class="svc-meta">
+          <span class="svc-meta-label">The Focus</span>
+          <p class="svc-meta-text">Fast, short-term relief for teams in a state of high friction or post-crisis.</p>
+        </div>
+        <div class="svc-meta">
+          <span class="svc-meta-label">What We Deliver</span>
+          <p class="svc-meta-text">A rapid 15-day alignment programme. We run intensive focus groups, map out immediate cultural cracks, and give the leadership team an emergency operational playbook to stop immediate burnout and prolonged low productivity.</p>
+        </div>
+        <div class="svc-foot">
+          <a href="#contact" class="svc-link">Enquire about this <span class="arr">→</span></a>
+        </div>
+      </article>
+      <article class="svc reveal delay-1" id="svc-leadership">
+        <div class="svc-img">
+          <span class="svc-num">02</span>
+          <img src="https://images.pexels.com/photos/8867434/pexels-photo-8867434.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Manager training session" loading="lazy" />
+        </div>
+        <h3>Leadership &amp;<br/>Manager Training</h3>
+        <div class="svc-meta">
+          <span class="svc-meta-label">The Focus</span>
+          <p class="svc-meta-text">Turning your best technical workers, like an amazing senior software engineer, into actual people managers.</p>
+        </div>
+        <div class="svc-meta">
+          <span class="svc-meta-label">What We Deliver</span>
+          <p class="svc-meta-text">Practical training modules covering constructive feedback, handling team conflict, performance management, emotional intelligence, and accountability tracking.</p>
+        </div>
+        <div class="svc-foot">
+          <a href="#contact" class="svc-link">Enquire about this <span class="arr">→</span></a>
+        </div>
+      </article>
+      <article class="svc reveal" id="svc-systems">
+        <div class="svc-img">
+          <span class="svc-num">03</span>
+          <img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Systems design collaboration" loading="lazy" />
+        </div>
+        <h3>Workplace<br/>Systems Design</h3>
+        <div class="svc-meta">
+          <span class="svc-meta-label">The Focus</span>
+          <p class="svc-meta-text">Building the structural backbone a growing organisation needs to scale without breaking.</p>
+        </div>
+        <div class="svc-meta">
+          <span class="svc-meta-label">What We Deliver</span>
+          <p class="svc-meta-text">Role clarity frameworks, onboarding playbooks, communication protocols, workflow structures, and accountability systems. Built for the size you are and the size you're becoming.</p>
+        </div>
+        <div class="svc-foot">
+          <a href="#contact" class="svc-link">Enquire about this <span class="arr">→</span></a>
+        </div>
+      </article>
+      <article class="svc reveal delay-1" id="svc-recruitment">
+        <div class="svc-img">
+          <span class="svc-num">04</span>
+          <img src="https://images.pexels.com/photos/8867434/pexels-photo-8867434.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Recruitment and onboarding consultation" loading="lazy" />
+        </div>
+        <h3>Recruitment &amp;<br/>Onboarding</h3>
+        <div class="svc-meta">
+          <span class="svc-meta-label">The Focus</span>
+          <p class="svc-meta-text">Bringing the right people into your organisation, and giving them everything they need to succeed from day one.</p>
+        </div>
+        <div class="svc-meta">
+          <span class="svc-meta-label">What We Deliver</span>
+          <p class="svc-meta-text">End-to-end recruitment design, structured interview frameworks, candidate scoring matrices, and a standardised 30-60-90 day onboarding playbook with automated training pathways and buddy systems built in.</p>
+        </div>
+        <div class="svc-foot">
+          <a href="#contact" class="svc-link">Enquire about this <span class="arr">→</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENT MODELS -->
+<section class="engagement" id="engagement">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <span class="num" style="color:rgba(255,255,255,0.6);">04 / ENGAGEMENT MODELS</span>
+        <span class="label on-dark">How We Partner</span>
+      </div>
+      <div class="reveal delay-1"><h2>How we work with organisations.</h2></div>
+    </div>
+
+    <p class="engagement-lead reveal delay-1">Three ways to engage Corporate Sense, calibrated to the depth of involvement your organisation actually needs. Many clients begin as Consultant engagements and move into Fractional or Embedded support as the relationship deepens.</p>
+
+    <div class="engagement-grid">
+
+      <article class="model reveal">
+        <div class="model-head">
+          <span class="model-num">01</span>
+          <span class="model-tag">Project-Based</span>
+        </div>
+        <h3>Consultant</h3>
+        <p class="model-summary">Advisory engagement. Diagnosis and recommendations, delivered.</p>
+        <ul class="model-list">
+          <li>Reviews HR processes</li>
+          <li>Identifies structural issues</li>
+          <li>Delivers recommendations and templates</li>
+          <li>Implementation stays with your team</li>
+        </ul>
+        <div class="model-foot">
+          <span class="model-foot-label">Best For</span>
+          <p>Organisations that need diagnostic clarity and a clear playbook to execute internally.</p>
+        </div>
+      </article>
+
+      <article class="model reveal delay-1 model-featured">
+        <div class="model-head">
+          <span class="model-num">02</span>
+          <span class="model-tag">Part-Time Leadership</span>
+        </div>
+        <h3>Fractional HR</h3>
+        <p class="model-summary">Part-time HR leadership. Strategy set and executed.</p>
+        <ul class="model-list">
+          <li>One to three days per week</li>
+          <li>Creates HR strategy</li>
+          <li>Oversees recruitment and performance</li>
+          <li>Coaches managers, implements initiatives</li>
+        </ul>
+        <div class="model-foot">
+          <span class="model-foot-label">Best For</span>
+          <p>Growing teams that need senior HR leadership but aren't ready to hire full-time.</p>
+        </div>
+      </article>
+
+      <article class="model reveal delay-2">
+        <div class="model-head">
+          <span class="model-num">03</span>
+          <span class="model-tag">Operational Partnership</span>
+        </div>
+        <h3>Embedded HR Partner</h3>
+        <p class="model-summary">Operates as part of your team. External provider, internal presence.</p>
+        <ul class="model-list">
+          <li>Attends leadership meetings</li>
+          <li>Handles employee relations and hiring</li>
+          <li>Manages onboarding and performance cycles</li>
+          <li>Functions as part of your internal team</li>
+        </ul>
+        <div class="model-foot">
+          <span class="model-foot-label">Best For</span>
+          <p>Organisations that need an internal HR presence without the cost of a permanent senior hire.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="engagement-note reveal delay-2">
+      <span class="engagement-note-label">Not sure which fits?</span>
+      <p>Every engagement begins with a Diagnostic. We'll recommend the model that matches what your organisation actually needs.</p>
+      <a href="#contact" class="btn btn-primary">Book a Diagnostic <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT THIS ACTUALLY LOOKS LIKE -->
+<section class="approach" id="approach">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <span class="num">05 / IN PRACTICE</span>
+        <span class="label">Case Examples</span>
+      </div>
+      <div class="reveal delay-1">
+        <h2>What this actually looks like.</h2>
+        <p style="color: var(--ink-mute); font-size: 17px; line-height: 1.6; margin-top: 24px; max-width: 56ch;">Three common scenarios, and the structural fixes we'd design. The outcomes shown are typical of what these systems achieve when properly implemented.</p>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="cases-tabs reveal" role="tablist">
+      <button class="case-tab active" data-case="0" role="tab">
+        <span class="case-tab-num">EXAMPLE A</span>
+        <span class="case-tab-title">Fixing Burnout<span class="sub">The Workflow System</span></span>
+      </button>
+      <button class="case-tab" data-case="1" role="tab">
+        <span class="case-tab-num">EXAMPLE B</span>
+        <span class="case-tab-title">Fixing Turnover<span class="sub">The Role &amp; Growth System</span></span>
+      </button>
+      <button class="case-tab" data-case="2" role="tab">
+        <span class="case-tab-num">EXAMPLE C</span>
+        <span class="case-tab-title">Fixing Disengagement<span class="sub">The Onboarding System</span></span>
+      </button>
+    </div>
+
+    <!-- Panels -->
+    <div class="case-panels reveal delay-1">
+
+      <!-- CASE A -->
+      <div class="case-panel active" data-panel="0">
+        <div class="case-toggle" role="tablist">
+          <button class="on" data-state="before">Before</button>
+          <button data-state="after">After the Fix</button>
+        </div>
+        <div class="case-states">
+          <div class="case-state before-state on">
+            <div class="case-grid">
+              <div class="case-vis">
+                <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet"><use href="#case-a-before"/></svg>
+              </div>
+              <div class="case-body">
+                <h4>The Problem</h4>
+                <h3>60-hour weeks, chaotic Slack, endless status meetings.</h3>
+                <p>A growth-stage startup has employees drowning in messages, sitting through daily status updates, and working weekends to keep up. Everyone is busy. Nothing is on time.</p>
+                <div class="case-stat">
+                  <span class="case-stat-big">60h</span>
+                  <span class="case-stat-lbl">Average working week. Burnout climbing. Best performers quietly job-hunting.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="case-state after-state">
+            <div class="case-grid">
+              <div class="case-vis">
+                <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet"><use href="#case-a-after"/></svg>
+              </div>
+              <div class="case-body">
+                <h4>The Structural Fix</h4>
+                <h3>Async communication framework. Real team boundaries.</h3>
+                <p>We replace daily status meetings with a centralised project dashboard. We design async-first communication protocols and establish protected team boundaries. No meetings before 11AM, no after-hours Slack expectations.</p>
+                <div class="case-stat">
+                  <span class="case-stat-big">−40%</span>
+                  <span class="case-stat-lbl">Meeting time cut. Projects delivered on time. No more weekend work.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE B -->
+      <div class="case-panel" data-panel="1">
+        <div class="case-toggle" role="tablist">
+          <button class="on" data-state="before">Before</button>
+          <button data-state="after">After the Fix</button>
+        </div>
+        <div class="case-states">
+          <div class="case-state before-state on">
+            <div class="case-grid">
+              <div class="case-vis">
+                <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet"><use href="#case-b-before"/></svg>
+              </div>
+              <div class="case-body">
+                <h4>The Problem</h4>
+                <h3>Mid-level managers quitting because they feel stuck.</h3>
+                <p>Capable managers feel micromanaged. Promotion criteria are unclear, ad hoc, and seem to depend on who you know. The best leaders quietly accept offers elsewhere, and take institutional knowledge with them.</p>
+                <div class="case-stat">
+                  <span class="case-stat-big">38%</span>
+                  <span class="case-stat-lbl">Manager-level turnover in twelve months. Mostly the ones you wanted to keep.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="case-state after-state">
+            <div class="case-grid">
+              <div class="case-vis">
+                <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet"><use href="#case-b-after"/></svg>
+              </div>
+              <div class="case-body">
+                <h4>The Structural Fix</h4>
+                <h3>An explicit Career Progression Framework.</h3>
+                <p>We map every role into clear tiers with objective performance criteria. Every employee knows precisely what skills, results, and behaviours they need to reach the next level. Promotions become transparent. Conversations get easier.</p>
+                <div class="case-stat">
+                  <span class="case-stat-big">+30%</span>
+                  <span class="case-stat-lbl">Employee retention. The path forward is visible, so people stay to walk it.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE C -->
+      <div class="case-panel" data-panel="2">
+        <div class="case-toggle" role="tablist">
+          <button class="on" data-state="before">Before</button>
+          <button data-state="after">After the Fix</button>
+        </div>
+        <div class="case-states">
+          <div class="case-state before-state on">
+            <div class="case-grid">
+              <div class="case-vis">
+                <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet"><use href="#case-c-before"/></svg>
+              </div>
+              <div class="case-body">
+                <h4>The Problem</h4>
+                <h3>New hires take six months to become productive, and check out before they get there.</h3>
+                <p>Onboarding is improvised. New hires feel lost in their first weeks, get conflicting information from different managers, and mentally disengage long before they ever hit their stride. By month three, half have one foot out the door.</p>
+                <div class="case-stat">
+                  <span class="case-stat-big">6 months</span>
+                  <span class="case-stat-lbl">Average time-to-productivity. Half of new hires considering quitting by month four.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="case-state after-state">
+            <div class="case-grid">
+              <div class="case-vis">
+                <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet"><use href="#case-c-after"/></svg>
+              </div>
+              <div class="case-body">
+                <h4>The Structural Fix</h4>
+                <h3>A standardised 30-60-90 onboarding playbook.</h3>
+                <p>We build a self-paced, structured onboarding system with automated training modules, predefined buddy pairings, and clear milestones at days 30, 60, and 90. New hires know what's expected. Managers know how to support them. Nothing is left to chance.</p>
+                <div class="case-stat">
+                  <span class="case-stat-big">6 weeks</span>
+                  <span class="case-stat-lbl">New time-to-productivity. Early-stage engagement up. Year-one retention transformed.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU CAN EXPECT -->
+<section class="proof">
+  <div class="wrap">
+    <div class="proof-inner">
+      <div class="proof-vis reveal">
+        <img src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Leadership team meeting" loading="lazy" />
+      </div>
+      <div class="reveal delay-1">
+        <span class="label" style="margin-bottom:28px;">Our Commitment</span>
+        <h2 style="font-size: clamp(36px, 4.5vw, 56px); margin-top: 24px; margin-bottom: 28px; max-width: 14ch;">If we can't help, we'll tell you.</h2>
+        <p class="proof-text">Every engagement begins with a Diagnostic. If what we find doesn't justify the work, we'll say so directly. We'd rather pass on a fee than take on an organisation we can't move forward.</p>
+        <div class="proof-meta"><span><strong>Founded</strong> · 2026</span><span><strong>Based In</strong> · Nigeria</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section class="quotes">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <span class="num" style="color:rgba(255,255,255,0.6);">06 / WHAT WE BELIEVE</span>
+        <span class="label on-dark">Operating Principles</span>
+      </div>
+      <div class="reveal delay-1"><h2>How we work, every time.</h2></div>
+    </div>
+
+    <div class="principles-grid">
+      <div class="principle reveal">
+        <div class="principle-num">01</div>
+        <h3>Diagnose before prescribing.</h3>
+        <p>We don't sell programmes. We listen, audit, observe, and find the real driver before recommending a single intervention.</p>
+      </div>
+      <div class="principle reveal delay-1">
+        <div class="principle-num">02</div>
+        <h3>Honest assessments.</h3>
+        <p>If a Diagnostic shows you don't need our help, we'll say so. We'd rather pass on a fee than take on work we can't move forward.</p>
+      </div>
+      <div class="principle reveal delay-2">
+        <div class="principle-num">03</div>
+        <h3>Built for your reality.</h3>
+        <p>No off-the-shelf playbooks. Every framework we deliver is designed for your team's size, sector, and stage of growth.</p>
+      </div>
+      <div class="principle reveal delay-3">
+        <div class="principle-num">04</div>
+        <h3>Plans that hold.</h3>
+        <p>We embed alongside your managers and team leads. The change has to still be working six months after we leave.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE SEE (thought leadership lead-in to blog) -->
+<section class="problems" id="patterns">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <span class="num">07 / THE PATTERN</span>
+        <span class="label">What We Keep Seeing</span>
+      </div>
+      <div class="reveal delay-1">
+        <p class="problems-intro">The same five problems show up in nearly every growing organisation. They look like people issues. They <em>almost never are.</em></p>
+      </div>
+    </div>
+    <ol class="problem-list">
+      <li class="problem reveal"><span class="p-num">01</span><span class="p-text">Burnout and chronic stress that no perks, retreats, or wellness programmes can fix.</span><span class="p-tag">Culture</span></li>
+      <li class="problem reveal delay-1"><span class="p-num">02</span><span class="p-text">Communication that breaks down the moment the team grows past fifteen.</span><span class="p-tag">Systems</span></li>
+      <li class="problem reveal delay-2"><span class="p-num">03</span><span class="p-text">Managers promoted for technical skill, then left to figure out leadership alone.</span><span class="p-tag">Leadership</span></li>
+      <li class="problem reveal delay-3"><span class="p-num">04</span><span class="p-text">Roles, ownership, and accountability that quietly drift into ambiguity.</span><span class="p-tag">Structure</span></li>
+      <li class="problem reveal delay-4"><span class="p-num">05</span><span class="p-text">Voluntary turnover costing more than anyone's measuring, and repeating.</span><span class="p-tag">Retention</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="insights" id="insights">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal"><span class="num">08 / THINKING</span><span class="label">Insights</span></div>
+      <div class="reveal delay-1"><h2>Notes on building workplaces that work.</h2></div>
+    </div>
+    <div class="ins-grid">
+      <article class="ins reveal">
+        <div class="ins-img"><span class="ins-cat">Article</span><img src="https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Article thumbnail" loading="lazy" /></div>
+        <div class="ins-meta"><span>7 min read</span><span class="sep"></span><span>March 2026</span></div>
+        <h3>The real reason your high-performers keep leaving.</h3>
+        <p>It's almost never about money. The structural pattern most leadership teams miss, and what to do about it.</p>
+      </article>
+      <article class="ins reveal delay-1">
+        <div class="ins-img"><span class="ins-cat">Interview</span><img src="https://images.pexels.com/photos/3760790/pexels-photo-3760790.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Interview thumbnail" loading="lazy" /></div>
+        <div class="ins-meta"><span>12 min read</span><span class="sep"></span><span>February 2026</span></div>
+        <h3>A founder on rebuilding after losing half her team.</h3>
+        <p>A candid conversation about the structural mistakes she made, what she changed, and how the culture survived the rebuild.</p>
+      </article>
+      <article class="ins reveal delay-2">
+        <div class="ins-img"><span class="ins-cat">Framework</span><img src="https://images.pexels.com/photos/3182833/pexels-photo-3182833.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Framework thumbnail" loading="lazy" /></div>
+        <div class="ins-meta"><span>5 min read</span><span class="sep"></span><span>January 2026</span></div>
+        <h3>The four signals your structure has outgrown your team.</h3>
+        <p>Most teams discover they've outgrown their structure six months too late. Here's how to spot it early.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final" id="contact">
+  <div class="wrap">
+    <div class="final-inner">
+      <div class="reveal">
+        <span class="num" style="margin-bottom:28px;">09 / LET'S TALK</span>
+        <h2>Let's look at <em>your workplace</em> together.</h2>
+      </div>
+      <div class="final-right reveal delay-1">
+        <p>Book a 30-minute conversation with our team. We'll listen, ask the right questions, and tell you honestly whether a Diagnostic is the right next step, or whether you don't need us at all.</p>
+        <div class="final-ctas">
+          <a href="#" class="btn btn-dark" onclick="event.preventDefault(); alert('Booking flow opens here. Wire to Calendly or Cal.com.');">Book a Diagnostic <span class="arr">→</span></a>
+          <span class="final-or">or</span>
+          <a href="https://wa.me/message/R4E7PENVXLOPD1" class="btn btn-text" target="_blank" rel="noopener">Message us on WhatsApp <span class="arr">→</span></a>
+        </div>
+        <div class="final-meta">
+          <div class="final-meta-item"><div class="label-sm">Email</div><div class="val">hello@corporatesense.ng</div></div>
+          <div class="final-meta-item"><div class="label-sm">Response time</div><div class="val">Within one business day</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <div class="f-brand">
+        <div class="logo"><span class="logo-bar"></span>Corporate Sense</div>
+        <p>A workplace transformation consultancy. We help growing organisations build cultures, systems, and managers strong enough to scale with the business.</p>
+      </div>
+      <div>
+        <h4>Practice</h4>
+        <ul>
+          <li><a href="#diagnostic">Diagnostics</a></li>
+          <li><a href="#services">Culture Sprint</a></li>
+          <li><a href="#services">Leadership Training</a></li>
+          <li><a href="#services">Systems Design</a></li>
+          <li><a href="#svc-recruitment">Recruitment &amp; Onboarding</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#approach">Approach</a></li>
+          <li><a href="#insights">Insights</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="f-news">
+        <h4>The Brief</h4>
+        <p>A short letter on workplace systems. Twice a month. No fluff, no promotional noise.</p>
+        <form class="f-form" onsubmit="event.preventDefault(); this.querySelector('input').value=''; this.querySelector('button').textContent='✓ Subscribed';">
+          <input type="email" placeholder="your@email.com" required />
+          <button type="submit">Subscribe →</button>
+        </form>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <div>© 2026 Corporate Sense Ltd. All rights reserved.</div>
+      <div class="f-bottom-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Code of Conduct</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/message/R4E7PENVXLOPD1" class="wa" id="wa" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <span class="wa-label">Chat with us</span>
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  const nav = document.getElementById('nav');
+  const wa = document.getElementById('wa');
+  const handleScroll = () => {
+    const y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 60);
+    wa.classList.toggle('show', y > 500);
+    let onDark = false;
+    document.querySelectorAll('.hero, .featured, .quotes, .students').forEach(sec => {
+      const r = sec.getBoundingClientRect();
+      if (r.top <= 80 && r.bottom >= 80) onDark = true;
+    });
+    nav.classList.toggle('on-light', !onDark);
+  };
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+
+  const toggle = document.getElementById('menuToggle');
+  const mMenu = document.getElementById('mobileMenu');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    mMenu.classList.toggle('open');
+    document.body.style.overflow = mMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.m-link').forEach(link => {
+    link.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      mMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }});
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id === '#' || id.length < 2) return;
+      const t = document.querySelector(id);
+      if (!t) return;
+      e.preventDefault();
+      const y = t.getBoundingClientRect().top + window.scrollY - 60;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    });
+  });
+
+  /* Case tabs */
+  const caseTabs = document.querySelectorAll('.case-tab');
+  const casePanels = document.querySelectorAll('.case-panel');
+  caseTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const idx = tab.dataset.case;
+      caseTabs.forEach(t => t.classList.toggle('active', t === tab));
+      casePanels.forEach(p => p.classList.toggle('active', p.dataset.panel === idx));
+    });
+  });
+
+  /* Before/after toggle within each case panel */
+  document.querySelectorAll('.case-panel').forEach(panel => {
+    const toggleBtns = panel.querySelectorAll('.case-toggle button');
+    const states = panel.querySelectorAll('.case-state');
+    toggleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.state;
+        toggleBtns.forEach(b => b.classList.toggle('on', b === btn));
+        states.forEach(s => s.classList.toggle('on', s.classList.contains(target + '-state')));
+      });
+    });
+  });
+</script>
+</body>
+</html>
